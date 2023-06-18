@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import { Outlet } from "react-router-dom";
+import Header from "./components/header/Header";
 
 
 function App() {
   return (
     <>
-      <Text> test</Text>
+      <Header/>
+      <Outlet/>
     </>
   );
 }
@@ -15,6 +17,3 @@ export default App;
 
 
 
-const Text = styled.h1`
-  color: #2ee7ff;
-`;
