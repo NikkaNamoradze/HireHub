@@ -10,7 +10,9 @@ import Job from "./pages/Job";
 import Saved from "./pages/Saved";
 import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
 
+import Registration from "./pages/Registration";
 
 
 export const router = createBrowserRouter(
@@ -23,6 +25,9 @@ export const router = createBrowserRouter(
       <Route path="/saved" element={<Saved />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registration" element={<Registration />} />
+
     </Route>
   )
 );
