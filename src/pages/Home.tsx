@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components';
+
 import MainComponent from '../components/main_component/MainComponent';
 
 function Home() {
@@ -9,8 +10,9 @@ function Home() {
     <MainComponent/>
     </>
  
+
   )
 }
 
-export default Home
+export default Home;
 
