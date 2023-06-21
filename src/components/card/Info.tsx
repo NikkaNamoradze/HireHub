@@ -13,14 +13,15 @@ const InfoBox = styled.div`
   background-color: #f0f0f0;
   height: 29px;
   border-radius: 30px;
-  background-color: red;
+  background-color: #FFFFFF;
 `;
 
-const InfoText = styled.span`
+const InfoText = styled.div`
   font-size: 11px;
   display: flex;
   justify-content: center;
   font-weight: bold;
+  color: #222222;
 `;
 
 function Info() {

@@ -50,7 +50,7 @@ const Container = styled.div`
   justify-content: space-between;
   flex-direction: row;
   gap: 15px;
-  margin: 23px;
+
 `;
 
 const Position = styled.p`

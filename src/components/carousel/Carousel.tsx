@@ -63,7 +63,7 @@ const Conatiner = styled.div`
 const CarouselContainer = styled.div`
   display: flex;
   overflow: hidden;
-  width: calc(100% - 64px);
+  width: 100%;
   margin: auto;
   border-radius: 58px;
   height: 70vh;
