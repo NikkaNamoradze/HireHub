@@ -3,23 +3,43 @@ import { styled } from "styled-components";
 import Info from "./Info";
 import saved from "../../assets/icons/Bookmark.svg";
 
-function Card({ image }: { image: string }) {
+function Card({
+  image,
+  title,
+  jobName,
+  companyName,
+  reqtext,
+  time
+}: {
+  image: string;
+  title: string;
+  jobName: string;
+  companyName: string;
+  reqtext: string;
+  time:string
+}) {
+
+
+
+
   return (
     <MainConteiner>
       <Div>
         <InfoContainer>
           <Image src={image} alt="" loading="lazy" />
           <DivConatiner>
-            <Title>Hatypo Studio</Title>
-            <JobName>UI Designer</JobName>
-            <CompanyName>Surakarta, ID - Onsite</CompanyName>
+            <Title>{title}</Title>
+            <JobName>{jobName}</JobName>
+            <CompanyName>{companyName}</CompanyName>
           </DivConatiner>
         </InfoContainer>
         <SavedImg src={saved} alt="" />
       </Div>
       <Info />
-      <ReqText>Requirements: Strong passion and active in the social world with a track record in charity or volunteer work  and some text... </ReqText>
-      <Time>1h ago</Time>
+      <ReqText>
+        {reqtext}
+      </ReqText>
+      <Time>{time}</Time>
     </MainConteiner>
   );
 }
@@ -27,15 +47,15 @@ function Card({ image }: { image: string }) {
 export default Card;
 
 const ReqText = styled.p`
-    display: flex;
-    color: #c5c5c5;
-    width: 100%;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; 
-    overflow: hidden;
+  display: flex;
+  color: #c5c5c5;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 `;
- 
+
 const InfoContainer = styled.div`
   display: flex;
   gap: 11px;
@@ -53,7 +73,7 @@ const Time = styled.div`
   font-weight: 400;
   font-size: 13px;
   line-height: 17px;
-  color: #A6A6A6;
+  color: #a6a6a6;
 `;
 
 const SavedImg = styled.img`
@@ -102,14 +122,12 @@ const DivConatiner = styled(Div)`
 `;
 
 const MainConteiner = styled.div`
-  width: 370px;
+  
   border-radius: 24px;
   background-color: #f4f3f3;
   padding: 23px;
   display: flex;
   gap: 15px;
   flex-direction: column;
+
 `;
-
-
-

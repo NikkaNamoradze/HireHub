@@ -42,7 +42,7 @@ const FireImg = styled.img`
 const Conatainer = styled.header`
   width: calc(100% - 48px);
   margin: auto;
-  padding: 5vh 0;
+  padding: 2vh 0;
   display: flex;
   justify-content: space-between;
 `;
