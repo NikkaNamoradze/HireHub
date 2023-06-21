@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
 import Info from "./Info";
-import Details from "./Details";
+
 import Description from "./Description";
+import Vigets from "../../main_component/Vigets";
 
 function CarouselContent({ item }: { item: any }) {
   const { image } = item;
@@ -11,7 +12,7 @@ function CarouselContent({ item }: { item: any }) {
       <Div>
         <InfoContainer>
           <Info image={image} />
-          <Details />
+          <Vigets/>
         </InfoContainer>
         <Description />
       </Div>

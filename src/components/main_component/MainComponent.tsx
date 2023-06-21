@@ -9,33 +9,41 @@ import Jobdescription from './Jobdescription';
 function MainComponent() {
 
     return (
-      <ParentContainer>
-        <Container>
+      <Container>
+
+        <Content>
           <UpperSection />
           <Vigets />
           <Switcher/>
           <Jobdescription/>
           <Apply>დაკავშირება</Apply>
-        </Container>
-      </ParentContainer>
+        </Content>
+      </Container>
+
 
     );
   }
 
 export default MainComponent;
 const Container = styled.div`
-  display:flex;
-  flex-direction: column;
-  width: 650px;
-  height: 778px;
-  background: #F4F3F3;
-  border-radius: 24px;
-`;
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+    height: calc( 90vh );
+    gap: 23px;
 
-const ParentContainer = styled.div`
-  display:flex;
-  justify-content:center;
+    background: #F4F3F3;
+    border-radius: 24px;
+    padding: 23px;
+  
 `;
+const Content =  styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 23px;
+`
+
 
 const Apply = styled.button`
 padding: 18px 256px;
