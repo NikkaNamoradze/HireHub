@@ -5,10 +5,12 @@ type Inputs = {
   label?: string;
   placeholder?: string;
   showPassword?: boolean;
+  setValue: React.Dispatch<React.SetStateAction<string>>
+  value: string
 };
 
-const InputComponent = ({ label, placeholder, showPassword }: Inputs) => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
+const InputComponent = ({ label, placeholder, showPassword, setValue, value }: Inputs) => {
+  const [passwordVisible, setPasswordVisible] = useState(true);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
@@ -21,6 +23,8 @@ const InputComponent = ({ label, placeholder, showPassword }: Inputs) => {
         <Input
           type={showPassword && passwordVisible ? "password" : "text"}
           placeholder={placeholder}
+          onChange={(event)=> setValue(event.target.value)}
+          value={value}
         />
         {showPassword && (
           <TogglePasswordButton onClick={togglePasswordVisibility}>

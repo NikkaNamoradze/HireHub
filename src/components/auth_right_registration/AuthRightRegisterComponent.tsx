@@ -1,8 +1,60 @@
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+import { useState } from "react";
 import styled from "styled-components";
 import BackArrow from "../../assets/icons/Back.svg";
 import InputComponent from "../Inputs/InputComponent";
 
 function AuthRightRegisterComponent() {
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setCheckboxChecked(!checkboxChecked);
+  };
+
+  const handleRegistration = () => {
+    if (nickname.trim() === "") {
+      console.log("შეიყვანეთ სრული სახელი");
+      return;
+    }
+
+    if (password.trim() === "") {
+      console.log("პაროლის შეყვანა აუცილებელია");
+      return;
+    }
+
+    if (password.length < 8) {
+      console.log("პაროლი უნდა იყოს 7 სიმბოლოზე მეტი");
+      return;
+    }
+
+    if (!checkboxChecked) {
+      console.log("დაეთანხმეთ წესებსა და პირობებს");
+      return;
+    }
+
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.uid);
+
+        const db = getDatabase();
+        set(ref(db, "users/" + user.uid), {
+          email:email,
+          password:password,
+          nickname:nickname
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <>
       <Container>
@@ -14,20 +66,34 @@ function AuthRightRegisterComponent() {
           <InputComponent
             label="სრული სახელი"
             placeholder="შეიყვანეთ შეიყვანეთ სრული სახელი"
+            value={nickname}
+            setValue={setNickname}
           />
-          <InputComponent label="იმეილი" placeholder="შეიყვანეთ იმეილი" />
+          <InputComponent
+            label="იმეილი"
+            placeholder="შეიყვანეთ იმეილი"
+            value={email}
+            setValue={setEmail}
+          />
           <InputComponent
             label="პაროლი"
             placeholder="შეიყვანეთ პაროლი"
+            value={password}
+            setValue={setPassword}
             showPassword={true}
           />
           <CheckboxContainer>
-            <Checkbox type="checkbox" id="termsCheckbox" />
+            <Checkbox
+              type="checkbox"
+              id="termsCheckbox"
+              checked={checkboxChecked}
+              onChange={handleCheckboxChange}
+            />
             <CheckboxLabel htmlFor="termsCheckbox">
               ვეთანხმები წესებსა და პირობებს
             </CheckboxLabel>
           </CheckboxContainer>
-          <Button>რეგისტრაცია</Button>
+          <Button onClick={handleRegistration}>რეგისტრაცია</Button>
         </SubContainer>
       </Container>
     </>
@@ -67,11 +133,11 @@ const Button = styled.button`
   height: 48px;
   width: 50%;
   color: white;
-  background-color: #222222;
+  background-color: ${(props) => (props.disabled ? "#acacac" : "#222222")};
   border: none;
   border-radius: 15px;
   font-size: 16px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   display: flex;
   justify-content: center;
   align-items: center;
