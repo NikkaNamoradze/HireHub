@@ -7,10 +7,13 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Urbanist';
-
+    text-decoration: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
   body{
-
+    
   }
   img{
     -webkit-user-drag: none;

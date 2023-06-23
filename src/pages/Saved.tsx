@@ -1,8 +1,9 @@
 import React from 'react'
+import CardDetails from '../components/SmallCard/CardDetails'
 
 function Saved() {
   return (
-    <div>Saved</div>
+    <><div>Saved</div><CardDetails image={''}/></>
   )
 }
 

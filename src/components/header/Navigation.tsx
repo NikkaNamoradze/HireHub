@@ -1,16 +1,18 @@
 import { styled } from "styled-components";
-import jobs from "../../assets/icons/works.svg";
-import saved from "../../assets/icons/saved.svg";
-import contact from "../../assets/icons/contact.svg";
+import jobs from "../../assets/icons/navigationIcon/works.svg";
+import saved from "../../assets/icons/navigationIcon/saved.svg";
+import contact from "../../assets/icons/navigationIcon/contact.svg";
+import home from "../../assets/icons/navigationIcon/Home.svg";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Navigation() {
   const nav = [
-    { icon: jobs, name: "Jobs" },
-    { icon: saved, name: "Saved" },
-    { icon: contact, name: "Contact" },
+    { icon: home, name: "Home" , path: '/'},
+    { icon: jobs, name: "Jobs",path: '/jobs' },
+    { icon: saved, name: "Saved",path: '/saved' },
+    { icon: contact, name: "Contact",path: '/contact' },
   ];
 
   const location = useLocation();
@@ -25,13 +27,16 @@ function Navigation() {
   return (
     <IconContainer>
       {nav.map((item, index) => {
+        const {icon, name, path} = item
         return (
-          <Link key={index} to={"/" + item.name.toLowerCase()}>
+          <Link key={index} to={path}>
             <Icon
-              focused={focused === "/" + item.name.toLowerCase()}
-              content={item.name}
+              focused={
+                focused === path
+              }
+              content={name}
             >
-              <img src={item.icon} alt="" />
+              <img src={icon} alt="" />
             </Icon>
           </Link>
         );
@@ -64,7 +69,6 @@ const Icon = styled.div<{ content: string; focused: boolean }>`
     background: #222222;
     width: 150px;
     transition: all 900ms ease;
-
   }
   &::after {
     content: "${(props) => (props.focused ? props.content : "")}";
