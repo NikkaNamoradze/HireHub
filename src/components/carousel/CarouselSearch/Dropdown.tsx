@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 import DownArrow from "../../../assets/icons/DownArrow.svg";
-function Dropdown() {
+function Dropdown({filter}:{filter?:boolean}) {
   const [city, setCity] = useState<string>("");
   const item = [
     "თბილისი",
@@ -16,7 +16,7 @@ function Dropdown() {
 
   return (
     <MainConatiner>
-      <DropDown>
+      <DropDown filter={filter}>
         {city === "" ? "ქალაქები" : city}
         <img src={DownArrow} alt="" />
       </DropDown>
@@ -50,13 +50,13 @@ const DropdownContent = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.098);
   z-index: 1;
 `;
-const DropDown = styled.div`
+const DropDown = styled.div<{filter?:boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 18px 25px;
   gap: 40px;
-  background: #f4f3f3;
+  background: ${({filter})=> filter?'#ffff':'#f4f3f3'} ;
   border-radius: 22px;
   font-style: normal;
   font-weight: 500;
