@@ -9,6 +9,7 @@ import Registration from "./pages/Registration";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 function App() {
+
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAL5Ix9BN2NOdPQrHmvVxKpUenaTn2C4Is",
@@ -24,7 +25,8 @@ function App() {
 
   return (
     <>
-      <Registration />
+      <Header/>
+      <Outlet/>
     </>
   );
 }

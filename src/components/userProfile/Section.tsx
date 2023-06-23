@@ -24,7 +24,7 @@ const Section: React.FC<SectionProps> = ({ jobTitle, position, content, startDat
       </div>
       
       <CBox>
-      <JTitle>{jobTitle}<span>{position}</span></JTitle>
+      <JTitle>{jobTitle} | <span>{position}</span></JTitle>
       <Content>{content}</Content>
       </CBox>
     </Container>
@@ -46,25 +46,25 @@ flex-direction: column;
 `;
 
 const JTitle = styled.div`
-color: '#222222';
+color: #222222;
 font-Size: 24;
 font-Family: 'BPG Nino Mtavruli';
-font-Weight: '400';
-word-Wrap: 'break-word'
-span{
-  color: '#828282';
-  font-Size: 24;
-  font-Family: 'BPG Nino Mtavruli';
-  font-Weight: '400';
-  word-Wrap: 'break-word'
-}
+font-Weight: 400;
+word-Wrap: break-word
+span {
+    color: #828282;
+    font-size: 24px;
+    font-family: 'BPG Nino Mtavruli';
+    font-weight: 400;
+    word-wrap: break-word;
+  }
 `;
 const Date = styled.p`
   color: #828282;
-font-size: 19px;
+  font-size: 19px;
   font-Family: 'BPG Nino Mtavruli';
-  font-Weight: '400';
-  word-Wrap: 'break-word';
+  font-Weight: 400;
+  word-Wrap: break-word;
 `;
 const Content = styled.div`
 color: #828282;
