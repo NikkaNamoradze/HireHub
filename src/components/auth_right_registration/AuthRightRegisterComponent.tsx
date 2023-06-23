@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import BackArrow from "../../assets/icons/Back.svg";
 import InputComponent from "../Inputs/InputComponent";
+import { app } from "../../firebase/config";
 
 function AuthRightRegisterComponent() {
   const [nickname, setNickname] = useState("");
@@ -36,7 +37,7 @@ function AuthRightRegisterComponent() {
       return;
     }
 
-    const auth = getAuth();
+    const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
