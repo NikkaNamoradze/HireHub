@@ -1,32 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-function Range({ min, max }: { min: number; max: number }) {
-  const [minValue, setMinValue] = useState<number>(min);
-  const [maxValue, setMaxValue] = useState<number>(max);
-
-  const minSlider = useRef<any>()
-  const maxSlider = useRef<any>()
-
+function Range({
+  min,
+  max,
+  minValue,
+  maxValue,
+  range,
+}: {
+  min: number;
+  max: number;
+  minValue: number;
+  maxValue: number;
+  range: React.Dispatch<React.SetStateAction<number[]>>;
+}) {
+  const minSlider = useRef<any>();
+  const maxSlider = useRef<any>();
 
   const [minProgress, setMinProgress] = useState<string>("0%");
   const [maxProgress, setMaxProgress] = useState<string>("100%");
 
-  
-
   const hendler = () => {
     const gap = 20;
     if (maxValue - minValue < gap) {
-       if (minSlider.current){
-        minSlider.current.value = maxValue - gap
-       }else{
-        maxSlider.current.value = minValue - gap
-       }
+      if (minSlider.current) {
+        minSlider.current.value = maxValue - gap;
+      } else {
+        maxSlider.current.value = minValue - gap;
+      }
     } else {
-        setMinProgress((minValue / max) * 100 + "%");
-        setMaxProgress(100 - (maxValue / max) * 100 + "%");
-        minSlider.current.value = minValue
-        maxSlider.current.value = maxValue
+      setMinProgress((minValue / max) * 100 + "%");
+      setMaxProgress(100 - (maxValue / max) * 100 + "%");
+      minSlider.current.value = minValue;
+      maxSlider.current.value = maxValue;
     }
   };
 
@@ -38,7 +44,6 @@ function Range({ min, max }: { min: number; max: number }) {
     <Container>
       <Slider>
         <Progress min={minProgress} max={maxProgress} />
-
       </Slider>
       <RangeInput>
         <RangeMin
@@ -46,14 +51,14 @@ function Range({ min, max }: { min: number; max: number }) {
           ref={minSlider}
           min={min}
           max={max}
-          onChange={(e) => setMinValue(parseInt(e.target.value))}
+          onChange={(e) => range((array)=>[parseInt(e.target.value), ...array.slice(1)])}
         />
         <RangeMax
           type="range"
           ref={maxSlider}
           min={min}
           max={max}
-          onChange={(e) => setMaxValue(parseInt(e.target.value))}
+          onChange={(e) => range((array)=>[array[0], parseInt(e.target.value)])}
         />
       </RangeInput>
     </Container>
