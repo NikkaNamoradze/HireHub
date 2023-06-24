@@ -4,6 +4,7 @@ import InputComponent from "../Inputs/InputComponent";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../firebase/config";
 
 function AuthRightLoginComponent() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ function AuthRightLoginComponent() {
       return;
     }
 
-    const auth = getAuth();
+    const auth = getAuth(app);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;

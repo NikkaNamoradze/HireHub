@@ -1,7 +1,10 @@
 import React from 'react'
+import Registration from './Registration'
 
 export default function Jobs() {
   return (
-    <div>Jobs</div>
+    <div>
+      <Registration/>
+    </div>
   )
 }

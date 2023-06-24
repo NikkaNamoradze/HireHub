@@ -30,6 +30,7 @@ export interface PayloadInterface {
       per_page: number;
   }
   
+
   export interface FilterInterface {
     setCatPayload:React.Dispatch<React.SetStateAction<string[]>>
     setWorkPayload:React.Dispatch<React.SetStateAction<string[]>>
@@ -40,6 +41,7 @@ export interface PayloadInterface {
     salaryPayload: number[]
   }
   
+
   export interface DataInterface {
     address: Address
     address_type: string

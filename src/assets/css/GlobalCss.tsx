@@ -28,5 +28,12 @@ export const GlobalStyles = createGlobalStyle`
   a{
     text-decoration: none;
   }
-    
+  
+  h1, span , a{
+    color: #ACACAC;
+font-size: 13px;
+text-decoration: none;
+
+line-height: 129%;
+  }
 `;
