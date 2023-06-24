@@ -31,6 +31,17 @@ export interface PayloadInterface {
   }
   
 
+  export interface FilterInterface {
+    setCatPayload:React.Dispatch<React.SetStateAction<string[]>>
+    setWorkPayload:React.Dispatch<React.SetStateAction<string[]>>
+    setEmpPayload:React.Dispatch<React.SetStateAction<string[]>>
+    setExpPayload:React.Dispatch<React.SetStateAction<string[]>>
+    setSalaryPayload: React.Dispatch<React.SetStateAction<number[]>>  
+    setCityPayload:React.Dispatch<React.SetStateAction<string[]>>
+    salaryPayload: number[]
+  }
+  
+
   export interface DataInterface {
     address: Address
     address_type: string
