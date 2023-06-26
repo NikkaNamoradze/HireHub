@@ -1,10 +1,24 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import Delete from "../../assets/icons/delete.svg";
-import Skill from "./Skill";
 import Input from "./Input";
+import Skill from "./Skill";
+import { getDatabase, set, ref } from "@firebase/database";
+import { app } from "../../firebase/config";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 function MiniModal() {
+  const [skill, setSkill] = useState("");
+
+  const uid = useSelector((state: RootState) => state.user.uid);
+
+  const onSave = () => {
+    const db = getDatabase(app);
+    set(ref(db, "users/" + `${uid}/` + "skills/" + `${skill}/`), {
+      skill: skill,
+    });
+  };
+
   return (
     <FormContainer>
       <Mamamtavari>
@@ -12,9 +26,8 @@ function MiniModal() {
         <Skill title="კერვა" />
         <Skill title="ცეკვა" />
       </Mamamtavari>
-      <Input title={"უნარი"} />
-
-      <CloseButton>შენახვა</CloseButton>
+      <Input label={"უნარი"} value={skill} setValue={setSkill} />
+      <CloseButton onClick={onSave}>შენახვა</CloseButton>
     </FormContainer>
   );
 }
