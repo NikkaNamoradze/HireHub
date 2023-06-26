@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import icon from "../../../assets/icons/searchIcon.svg";
 import Input from "./Input";
 import Dropdown from "./Dropdown";
+import { Link } from "react-router-dom";
 
 function CarouselSearch() {
+  const [city, setCity] = useState<string[]>([]);
+  const [keyword, setKeyword] = useState<string>("");
+
   return (
     <MainContainer>
-      <Input />
+      <Input value={keyword} setState={setKeyword} />
       <Continer>
-        <Dropdown />
-        <Button>ძიება</Button>
+        <Dropdown setState={setCity} />
+        <Link
+          to={{
+            pathname: "/jobs",
+            search: `?keyword=${keyword}&city=${city}`,
+          }}
+        >
+          <Button>ძიება</Button>
+        </Link>
       </Continer>
     </MainContainer>
   );
@@ -33,11 +44,11 @@ const MainContainer = styled.div`
   transform: translate(-50%, -60%);
 `;
 const Continer = styled.div`
-gap:26px;
-display: flex;
+  gap: 26px;
+  display: flex;
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -45,12 +56,11 @@ const Button = styled.button`
   gap: 10px;
   background: #222222;
   border-radius: 21px;
-
-  font-family: "Urbanist";
+  cursor: pointer;
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
   line-height: 20px;
 
   color: #ffffff;
-`
+`;

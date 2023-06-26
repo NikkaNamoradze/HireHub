@@ -1,8 +1,7 @@
 import axios from "axios";
 import { PayloadInterface } from "../types";
 
-const request = async (url:string, payload:any) => {
-
+export const postRequest = async (url: string, payload: any) => {
   const header = {
     headers: {
       "Content-Type": "application/json",
@@ -15,4 +14,9 @@ const request = async (url:string, payload:any) => {
 
   return response.data;
 };
-export default request;
+
+export const getRequest = async (url: string) => {
+  const response = await axios.get(url);
+
+  return response.data;
+};
