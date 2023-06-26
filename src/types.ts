@@ -268,3 +268,18 @@ export interface PayloadInterface {
     vacancies_on_email: boolean
     vacancies_on_platform: boolean
   }
+
+
+  export interface ProfileItemInterface {
+    id:number;
+    title: string;
+    position: string;
+    content: string;
+    startDate: string;
+    endDate: string;
+  }
+  export interface ProfileSecondItemInterface {
+    id:number;
+    title: string;
+  }
+  
