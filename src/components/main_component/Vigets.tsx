@@ -1,26 +1,38 @@
 import React from "react";
 import { styled } from "styled-components";
+import { format } from "../../utils/dateFormat";
 
-function Details() {
+function Details({
+  salary,
+
+  jobType,
+  dedline,
+  employment_type,
+}: {
+  salary: string;
+  jobType: string;
+  dedline: string;
+  employment_type: string;
+}) {
   const list = [
     {
       title: "ხელფასი",
-      value: "$10 /hour",
+      value: salary,
       color: "#BDF4C9",
     },
     {
       title: "სამუშაოს ტიპი",
-      value: "Part-Time",
+      value: jobType,
       color: "#BEE5F6",
     },
     {
-      title: "კანდიდატების რაოდენობა",
-      value: "20 /50",
+      title: "დედლაინი",
+      value: format(dedline),
       color: "#FED0AB",
     },
     {
-      title: "უნარები",
-      value: "Expert",
+      title: "დასაქმების ტიპი",
+      value: employment_type,
       color: "#CECCFF",
     },
   ];
@@ -29,10 +41,12 @@ function Details() {
     <MainContainer>
       {list.map((item, index) => {
         return (
-          <Container key={index} color={item.color}>
-            <Title>{item.title}</Title>
-            <Value>{item.value}</Value>
-          </Container>
+          item.value === "" || item.value !== null && (
+            <Container key={index} color={item.color}>
+              <Title>{item.title}</Title>
+              <Value>{item.value}</Value>
+            </Container>
+          )
         );
       })}
     </MainContainer>
@@ -42,21 +56,20 @@ function Details() {
 export default Details;
 
 const MainContainer = styled.div`
-    display: flex;
-    gap: 11px;
-    justify-content: center;
-`
+  display: flex;
+  gap: 11px;
+  justify-content: center;
+`;
 
 const Container = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
   padding: 15px 33px;
   border-radius: 26px;
-  flex-direction:column;
+  flex-direction: column;
   display: flex;
-  gap:9px;
+  gap: 9px;
 `;
 const Title = styled.div`
-
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -65,7 +78,6 @@ const Title = styled.div`
   color: #000000;
 `;
 const Value = styled.div`
-
   font-style: normal;
   font-weight: 700;
   font-size: 17px;

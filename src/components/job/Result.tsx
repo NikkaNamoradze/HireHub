@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-function Result() {
-  return <Container>მსგავსი ვაკანსიები <Quantity>20 ვაკანსია</Quantity> </Container>;
+function Result({title, count}:{title:string, count:number}) {
+  return <Container>{title} <Quantity>{count} ვაკანსია</Quantity> </Container>;
 }
 
 export default Result;

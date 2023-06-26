@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import BookmarkIcon from '../../assets/icons/Bookmark.svg';
+import { IMAGE_URL } from '../../api/apiConfig';
 
-const UpperSection = () => {
+const UpperSection = ({image,company,position, location}:{image:string, company:string,position:string, location:string}) => {
   return (
     <Container>  
     <Div>
-        <Logo />
+        <Logo src={IMAGE_URL(image)} alt="" />
       <SuperDiv>
-        <Company>Hatypo Studio</Company>
-        <Position>Ui Designer</Position>
-        <Description>Suracarta ID - onsite</Description>
+        <Company>{company}</Company>
+        <Position>{position}</Position>
+        <Location>{location}</Location>
       </SuperDiv>
     </Div>
     
@@ -56,19 +57,20 @@ const Container = styled.div`
 const Position = styled.p`
   font-family: 'Urbanist';
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 22px;
   line-height: 17px;
 `;
 
-const Logo = styled.div`
+const Logo = styled.img`
   width: 81px;
   height: 81px;
   background: #2a9df4;
   border-radius: 25px;
+  object-fit: cover;
 `;
 
-const Description = styled.p`
+const Location = styled.p`
   font-family: 'Urbanist';
   font-style: normal;
   font-weight: 400;

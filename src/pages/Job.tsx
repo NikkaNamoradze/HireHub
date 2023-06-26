@@ -4,43 +4,35 @@ import JobsList from "../components/job/JobsList";
 import { MainConatiner } from "../components/other/styledCompnents";
 import styled from "styled-components";
 import Filter from "../components/Filter/Filter";
-import request from "../api/api";
-import { FILTER_URL, payload } from "../api/apiConfig";
-
+import {getRequest} from "../api/api";
+import { FILTER_URL, SUGGEST, VACANCY, payload } from "../api/apiConfig";
+import { DataInterface } from "../types";
+import { useLocation, useParams } from "react-router-dom";
 function Job() {
-  const [catPayload, setCatPayload] = useState<string[]>([]);
-  const [workPayload, setWorkPayload] = useState<string[]>([]);
-  const [empPayload, setEmpPayload] = useState<string[]>([]);
-  const [expPayload, setExpPayload] = useState<string[]>([]);
-  const [salaryPayload, setSalaryPayload] = useState<number[]>([0, 2500]);
-  const [cityPayload, setCityPayload] = useState<string[]>([]);
+  const { id } = useParams();
 
-useEffect(()=>{
-  const req = async() =>{
-    const res = await request(FILTER_URL, payload(catPayload, workPayload, empPayload, expPayload, salaryPayload, cityPayload))
-    
-    console.log(res)
+  const [suggestData, setSuggestData] = useState<DataInterface[]>();
+  const [vacancyData, setVacancyData] = useState<DataInterface>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const suggestResponse = await getRequest(SUGGEST(id ?? ""));
+      const vacancyResponse = await getRequest(VACANCY(id ?? ""));
+      setSuggestData(suggestResponse.items);
+      setVacancyData(vacancyResponse);
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (!suggestData || !vacancyData) {
+    return <div>Loading...</div>; // You can replace this with a loading spinner or any other loading indicator
   }
-  req()
-
-
-},[catPayload, workPayload, empPayload, expPayload, salaryPayload, cityPayload])
-
-
 
   return (
     <Container>
-      <JobsList />
-      <MainComponent />
-      <Filter
-        setCatPayload={setCatPayload}
-        setWorkPayload={setWorkPayload}
-        setEmpPayload={setEmpPayload}
-        setExpPayload={setExpPayload}
-        setSalaryPayload={setSalaryPayload}
-        setCityPayload={setCityPayload}
-        salaryPayload={salaryPayload}
-      />
+      <JobsList data={suggestData} count={suggestData.length} title={"მსგავსი ვაკანსიები"} />
+      <MainComponent data={vacancyData} />
     </Container>
   );
 }
@@ -51,5 +43,6 @@ const Container = styled.div`
   display: flex;
   gap: 24px;
   width: calc(100% - 64px);
+  height: calc( 100vh - 81.11px );
   margin: auto;
 `;

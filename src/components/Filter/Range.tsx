@@ -41,27 +41,32 @@ function Range({
   }, [minValue, maxValue]);
 
   return (
-    <Container>
+    <div>
       <Slider>
         <Progress min={minProgress} max={maxProgress} />
+        <Min min={minProgress}>{minValue+"₾"}</Min>
+        <Max max={maxProgress}>{maxValue+"₾"}</Max>
+
       </Slider>
       <RangeInput>
         <RangeMin
           type="range"
           ref={minSlider}
           min={min}
+          step={10}
           max={max}
           onChange={(e) => range((array)=>[parseInt(e.target.value), ...array.slice(1)])}
         />
         <RangeMax
           type="range"
           ref={maxSlider}
+          step={10}
           min={min}
           max={max}
           onChange={(e) => range((array)=>[array[0], parseInt(e.target.value)])}
         />
       </RangeInput>
-    </Container>
+    </div>
   );
 }
 
@@ -84,7 +89,21 @@ const Progress = styled.div<{ min: string; max?: string }>`
   border-radius: 5px;
 `;
 
-const Container = styled.div``;
+const Value = styled.div <{max?:string, min?:string}>`
+    position: absolute;
+    color: #222222;
+
+    top: 10px;
+`;
+
+
+const Min = styled(Value)`
+  left: ${({ min }) => min};
+`;
+const Max = styled(Value)`
+  right: ${({ max }) => max};
+
+`;
 
 const RangeInput = styled.div`
   position: relative;

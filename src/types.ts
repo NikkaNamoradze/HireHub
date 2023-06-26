@@ -38,7 +38,8 @@ export interface PayloadInterface {
     setExpPayload:React.Dispatch<React.SetStateAction<string[]>>
     setSalaryPayload: React.Dispatch<React.SetStateAction<number[]>>  
     setCityPayload:React.Dispatch<React.SetStateAction<string[]>>
-    salaryPayload: number[]
+    salaryPayload: number[],
+    show:boolean
   }
   
 
