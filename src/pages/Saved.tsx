@@ -1,3 +1,5 @@
+import React from 'react'
+import CardDetails from '../components/SmallCard/CardDetails'
 import  { useEffect, useState } from 'react'
 import { getDatabase, ref, onValue} from "firebase/database";
 import { app } from '../firebase/config';

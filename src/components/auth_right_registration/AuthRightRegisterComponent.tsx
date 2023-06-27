@@ -43,11 +43,11 @@ function AuthRightRegisterComponent() {
         const user = userCredential.user;
         console.log(user.uid);
 
-        const db = getDatabase();
-        set(ref(db, "users/" + user.uid), {
+        const db = getDatabase(app);
+        set(ref(db, "users/" + `${user.uid}/` + "personal_data/"), {
           email:email,
           password:password,
-          nickname:nickname
+          nickname:nickname,
         });
       })
       .catch((error) => {

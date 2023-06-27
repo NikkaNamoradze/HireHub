@@ -1,16 +1,22 @@
-import React from 'react'
-import { styled } from 'styled-components';
+import React from "react";
+import { styled } from "styled-components";
 
-function Input({title}: {title:string}) {
+type Inputs = {
+  label?: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
+};
+
+const Input = ({ label, setValue, value }: Inputs) => {
   return (
     <FormField>
-        <label>{title}</label>
-        <input type="text" />
-      </FormField>
-  )
-}
+      <label>{label}</label>
+      <input type="text" value={value} onChange={(event)=> setValue(event.target.value)}/>
+    </FormField>
+  );
+};
 
-export default Input
+export default Input;
 
 const FormField = styled.div`
   display: flex;

@@ -13,7 +13,7 @@ const Skill: React.FC<Item> = ({ title}) => {
         <Icon>
         <img src={Delete} alt="Delete" />
         </Icon> 
-        <Title>{title}</Title>
+        <Title>{title}</Title>z
         </Skills>
     </>
   )
