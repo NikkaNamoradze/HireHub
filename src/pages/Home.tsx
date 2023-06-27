@@ -19,14 +19,12 @@ function Home() {
     }
     req()
   })
-  console.log("=====",data)
 
   return (
     <MainConatiner>
       <Carousel />
-      <JobCard data={data as DataInterface[]}/>
+      <JobCard title={"ახალი ვაკანსიები"} data={data as DataInterface[]}/>
 
-      {/* <NewJobs  data={data as DataInterface[]}/> */}
     </MainConatiner>
   );
 }
