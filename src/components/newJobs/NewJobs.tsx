@@ -49,14 +49,14 @@ const Container = styled.div`
 `;
 
 const CardContainer = styled.div`
-  display: flex;
+  /* display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: center; */
   flex-direction: column;
   flex-wrap: wrap; 
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
+  /* grid-template-columns: repeat(4, 1fr);  */
   grid-gap: 10px;
 
 `;
