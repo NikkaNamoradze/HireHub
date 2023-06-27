@@ -16,6 +16,7 @@ import {
 
 import MapComponentn from "./Map";
 import { app } from "../../firebase/config";
+import { media } from "../../assets/css/GlobalCss";
 
 function MainComponent({ data }: { data: DataInterface }) {
   if (!data) {
@@ -66,7 +67,6 @@ function MainComponent({ data }: { data: DataInterface }) {
       }
       else{
         setIsSaved(false);
-        console.log(arr)
       }
     });
   },[firebaseData, data, isSaved ])
@@ -87,10 +87,8 @@ function MainComponent({ data }: { data: DataInterface }) {
     const skillRef = ref(db, "users/" + userId + "/saved" + `/${jobId}/`);
     
     remove(skillRef).then(() => {
-      console.log(`Skill with ID ${id} deleted successfully.`);
     })
     .catch((error:any) => {
-      console.error(`Error deleting skill with ID ${id}:`, error);
     });
 
   };
@@ -172,6 +170,12 @@ const Apply = styled.button`
   border-radius: 21px;
   color: #ffffff;
   margin: auto;
+
+  ${media.phone(`
+    font-size: 16px;
+    padding: 18px 100px;
+
+  `)}
 `;
 
 

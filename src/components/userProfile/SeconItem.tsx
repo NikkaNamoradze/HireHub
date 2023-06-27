@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import MiniBox from "./MiniBox";
 import add from "../../assets/icons/add.svg";
 import { ProfileSecondItemInterface } from "../../types";
+import { media } from "../../assets/css/GlobalCss";
 
 function SeconItem({
   title,
@@ -74,5 +75,10 @@ const Container = styled.div`
     font-weight: "400";
     word-wrap: "break-word";
     align-self: flex-start;
+
+    ${media.phone(`
+      font-size: 22px;
+
+          `)}
   }
 `;

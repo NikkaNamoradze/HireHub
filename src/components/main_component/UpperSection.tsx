@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BookmarkIcon from "../../assets/icons/Bookmark.svg";
 import { IMAGE_URL } from "../../api/apiConfig";
+import { media } from "../../assets/css/GlobalCss";
 
 const UpperSection = ({
   isSaved,
@@ -99,7 +100,14 @@ const Position = styled.p`
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
-  line-height: 17px;
+  /* line-height: 17px; */
+
+  ${media.smallDevices(`
+        font-size: 14px;
+
+    `)}
+  
+
 `;
 
 const Logo = styled.img`

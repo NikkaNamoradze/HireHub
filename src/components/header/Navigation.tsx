@@ -52,6 +52,11 @@ export default Navigation;
 const IconContainer = styled.div`
   display: flex;
   gap: 15px;
+
+  ${media.smallDevices(`
+      gap: 6px;
+
+          `)}
 `;
 
 const Icon = styled.div<{ content: string; focused: boolean }>`

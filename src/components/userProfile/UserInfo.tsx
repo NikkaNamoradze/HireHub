@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import editIcon from '../../assets/icons/editIcon.svg';
+import { media } from '../../assets/css/GlobalCss';
 
 
 interface Info {
@@ -33,6 +34,12 @@ flex-shrink: 0;
 border-radius: 40px;
 border: 2px solid #FFF;
 background: #D9D9D9;
+
+${media.phone(`
+      width: 100px;
+      height: 100px;
+
+          `)}
 `;
 const Icon = styled.div`
   position: absolute;

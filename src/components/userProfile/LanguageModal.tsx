@@ -49,7 +49,6 @@ function LanguageModal() {
   const onSave = () => {
     const id = generateRandomId()
     const db = getDatabase(app);
-    console.log(id)
     set(ref(db, "users/" + `${uid}/` + "language/" + `${id}/`), {
         id:id,
         title: language,
@@ -62,10 +61,8 @@ function LanguageModal() {
     
     remove(skillRef)
       .then(() => {
-        console.log(`Skill with ID ${id} deleted successfully.`);
       })
       .catch((error) => {
-        console.error(`Error deleting skill with ID ${id}:`, error);
       });
 
       if(languageData.length === 1){
