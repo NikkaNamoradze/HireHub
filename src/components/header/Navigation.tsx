@@ -3,9 +3,11 @@ import jobs from "../../assets/icons/navigationIcon/works.svg";
 import saved from "../../assets/icons/navigationIcon/saved.svg";
 import contact from "../../assets/icons/navigationIcon/contact.svg";
 import home from "../../assets/icons/navigationIcon/Home.svg";
+
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {media} from "../../../src/assets/css/GlobalCss"
 
 function Navigation() {
   const nav = [
@@ -69,10 +71,24 @@ const Icon = styled.div<{ content: string; focused: boolean }>`
     background: #222222;
     width: 150px;
     transition: all 900ms ease;
+
+    ${media.phone(`
+    width:50px
+  `)}
   }
+
+  ${media.phone(`
+    width:50px
+  `)}
+
   &::after {
     content: "${(props) => (props.focused ? props.content : "")}";
     color: #acacac;
     transition-delay: 900ms;
+
+    ${media.phone(`
+    display:none;
+  `)}
+
   }
 `;

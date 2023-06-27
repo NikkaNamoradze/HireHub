@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 import DownArrow from "../../../assets/icons/DownArrow.svg";
+import {media} from "../../../assets/css/GlobalCss"
+
 function Dropdown({
   filter,
   setState,
@@ -97,6 +99,16 @@ const DropDown = styled.div<{ filter?: boolean }>`
   font-size: 17px;
   line-height: 20px;
   color: #929292;
+
+
+  padding: 16px 16px;
+
+
+  ${media.smallDevices(`
+     padding: 16px 16px;
+     gap:20px
+  `)}
+
 `;
 
 const MainConatiner = styled.div`
@@ -106,6 +118,11 @@ const MainConatiner = styled.div`
   &:hover ${DropdownContent} {
     display: block;
   }
+
+  ${media.smallDevices(`
+     display:none;
+  `)}
+
 `;
 
 const Item = styled.button<{ focused: boolean }>`

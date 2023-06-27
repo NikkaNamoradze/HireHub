@@ -17,7 +17,7 @@ export default Input;
 const Search =styled.input`
     all: unset;
     color:#222222;
-    width: 100%;
+    /* width: 100%; */
 
     &::placeholder {
   color: #ACACAC;

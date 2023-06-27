@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { IMAGE_URL } from "../../api/apiConfig";
 
-function MainInfo({
+function MainInfo1({
   image,
   title,
   jobName,
@@ -25,12 +25,11 @@ function MainInfo({
   );
 }
 
-export default MainInfo;
+export default MainInfo1;
 
 const InfoContainer = styled.div`
   display: flex;
   gap: 11px;
-  width: 90%;
 `;
 
 const Image = styled.img`
