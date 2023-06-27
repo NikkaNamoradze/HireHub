@@ -44,4 +44,4 @@ The Job Finder Website is built using the following technologies and libraries:
 - Clone the repository:
 
    ```shell
-   https://github.com/NikkaNamoradze/HireHub/tree/development
+   https://github.com/NikkaNamoradze/HireHub.git
