@@ -1,22 +1,39 @@
-import React, { useState, FormEvent } from 'react';
-import styled from 'styled-components';
+import { getDatabase, set, ref } from "firebase/database";
+import React, { useState, FormEvent } from "react";
+import styled from "styled-components";
+import { app } from "../../firebase/config";
 
 interface ContactFormProps {
   onSubmit: (name: string, email: string, message: string) => void;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const generateRandomId = () => {
+    const randomNumber = Math.floor(Math.random() * 1000) + 1;
+    const randomSymbols = Array.from({ length: 3 }, () =>
+      String.fromCharCode(Math.floor(Math.random() * 26) + 97)
+    ).join("");
+    return `${randomNumber}${randomSymbols}`;
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit(name, email, message);
-    // Reset form fields
-    setName('');
-    setEmail('');
-    setMessage('');
+    const db = getDatabase(app);
+    const id = generateRandomId()
+    set(ref(db, "Feedbacks/" + `${id}/`), {
+      name: name,
+      email: email,
+      message: message,
+    });
+    setName("");
+    setEmail("");
+    setMessage("");
+    setIsSubmitted(true);
   };
 
   return (
@@ -43,7 +60,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
           onChange={(e) => setMessage(e.target.value)}
           required
         />
-        <SubmitButton type="submit">Send Message</SubmitButton>
+        <SubmitButton type="submit">
+          Send Message
+        </SubmitButton>
+        {isSubmitted && <AlertMessage>წერილი წარმატებით გაიგზავნა</AlertMessage>}
       </Form>
     </FormContainer>
   );
@@ -109,3 +129,8 @@ const SubmitButton = styled.button`
   }
 `;
 
+const AlertMessage = styled.div`
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+`;
