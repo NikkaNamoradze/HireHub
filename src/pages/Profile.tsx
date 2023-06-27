@@ -9,7 +9,6 @@ import Modal from "../components/userProfile/Modal";
 import MiniModal from "../components/userProfile/MiniModal";
 import { useState } from "react";
 import BigModal from "../components/userProfile/BigModal";
-import { ProfileItemInterface } from "../types";
 
 function Profile() {
   const jobs = [

@@ -8,6 +8,7 @@ import { FILTER_URL, VACANCY, payload } from "../api/apiConfig";
 import { useLocation } from "react-router-dom";
 import { DataInterface } from "../types";
 import SearchhBar from "../components/SearchBar/SearchhBar";
+import Loader from "../components/loader/Loader";
 
 export default function Jobs() {
   const location = useLocation();
@@ -45,7 +46,6 @@ export default function Jobs() {
       );
       setData(res1.items);
 
-
       setMainData(res1.items[0]);
     };
     req();
@@ -57,7 +57,7 @@ export default function Jobs() {
     salaryPayload,
     cityPayload,
     keyword,
-    city
+    city,
   ]);
 
   useEffect(() => {
@@ -68,6 +68,10 @@ export default function Jobs() {
     req();
   }, [job]);
 
+  if (!data || !maindata) {
+    return <Loader />;
+  }
+
   return (
     <MainContainer>
       <JobsList
@@ -77,20 +81,19 @@ export default function Jobs() {
         title={"ძიების შედეგი"}
       />
       <Content>
-        <SearchhBar setFilter={setFilter}  filter={filter} />
+        <SearchhBar setFilter={setFilter} filter={filter} />
         <Container>
-
-        <MainComponent data={maindata} />
-        <Filter
-          show={filter}
-          setCatPayload={setCatPayload}
-          setWorkPayload={setWorkPayload}
-          setEmpPayload={setEmpPayload}
-          setExpPayload={setExpPayload}
-          setSalaryPayload={setSalaryPayload}
-          setCityPayload={setCityPayload}
-          salaryPayload={salaryPayload}
-        />
+          <MainComponent data={maindata} />
+          <Filter
+            show={filter}
+            setCatPayload={setCatPayload}
+            setWorkPayload={setWorkPayload}
+            setEmpPayload={setEmpPayload}
+            setExpPayload={setExpPayload}
+            setSalaryPayload={setSalaryPayload}
+            setCityPayload={setCityPayload}
+            salaryPayload={salaryPayload}
+          />
         </Container>
       </Content>
     </MainContainer>
@@ -101,21 +104,19 @@ const Container = styled.div`
   display: flex;
   gap: 24px;
   width: 100%;
-  height:  calc( 100% - 74px );
-
+  height: calc(100% - 74px);
 `;
-const  MainContainer= styled.div`
+const MainContainer = styled.div`
   display: flex;
   gap: 24px;
   margin: auto;
   width: calc(100% - 64px);
-  height: calc( 100vh - 81.11px );
+  height: calc(100vh - 81.11px);
 `;
 
-const  Content= styled.div`
-gap: 23px;
-display: flex;
-height: 100%;
-flex-direction: column;
-`
-
+const Content = styled.div`
+  gap: 23px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+`;
