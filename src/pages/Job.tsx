@@ -4,10 +4,11 @@ import JobsList from "../components/job/JobsList";
 import { MainConatiner } from "../components/other/styledCompnents";
 import styled from "styled-components";
 import Filter from "../components/Filter/Filter";
-import {getRequest} from "../api/api";
+import { getRequest } from "../api/api";
 import { FILTER_URL, SUGGEST, VACANCY, payload } from "../api/apiConfig";
 import { DataInterface } from "../types";
 import { useLocation, useParams } from "react-router-dom";
+import Loader from "../components/loader/Loader";
 function Job() {
   const { id } = useParams();
 
@@ -26,12 +27,16 @@ function Job() {
   }, [id]);
 
   if (!suggestData || !vacancyData) {
-    return <div>Loading...</div>; // You can replace this with a loading spinner or any other loading indicator
+    return <Loader />;
   }
 
   return (
     <Container>
-      <JobsList data={suggestData} count={suggestData.length} title={"მსგავსი ვაკანსიები"} />
+      <JobsList
+        data={suggestData}
+        count={suggestData.length}
+        title={"მსგავსი ვაკანსიები"}
+      />
       <MainComponent data={vacancyData} />
     </Container>
   );
@@ -43,6 +48,6 @@ const Container = styled.div`
   display: flex;
   gap: 24px;
   width: calc(100% - 64px);
-  height: calc( 100vh - 81.11px );
+  height: calc(100vh - 81.11px);
   margin: auto;
 `;

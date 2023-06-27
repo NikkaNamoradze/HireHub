@@ -4,6 +4,7 @@ import { app } from '../firebase/config';
 import JobCard from '../components/mainCard/Jobcard';
 import { DataInterface } from '../types';
 import { MainConatiner } from "../components/other/styledCompnents";
+import Loader from '../components/loader/Loader';
 
 function Saved() {
 
@@ -20,6 +21,10 @@ function Saved() {
     });
 
   },[])
+
+  if (!data ) {
+    return <Loader />;
+  }
     
   return (
     <MainConatiner>
