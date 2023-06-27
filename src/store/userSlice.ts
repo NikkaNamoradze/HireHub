@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
-  uid: string | null;
+  uid: string | undefined;
 }
 
 const initialState: UserState = {
-  uid: null,
+  uid: undefined,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<string>) => {
+    login: (state, action: PayloadAction<string|undefined>) => {
       state.uid = action.payload;
     },
   },

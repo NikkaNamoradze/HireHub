@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase/config";
 
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/userSlice';
+import { useDispatch } from "react-redux";
+import { login } from "../../store/userSlice";
+import Cookies from "js-cookie";
 
 function AuthRightLoginComponent() {
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ function AuthRightLoginComponent() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        dispatch(login(user.uid));
+        Cookies.set("uid", user.uid);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,6 +50,7 @@ function AuthRightLoginComponent() {
         </Link>
 
         <SubContainer>
+          <Title>შესვლა</Title>
           <InputComponent
             label="იმეილი"
             placeholder="შეიყვანეთ იმეილი"
@@ -79,6 +81,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+`;
+
+const Title = styled.p`
+  font-size: 35px;
+  color: #222222;
+  font-weight: 600;
 `;
 
 const SubContainer = styled.div`
