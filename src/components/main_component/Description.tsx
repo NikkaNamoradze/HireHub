@@ -8,7 +8,6 @@ interface JobDescriptionProps {
 }
 
 const Description: React.FC<JobDescriptionProps> = ({ description , title}) => {
-  console.log(description)
   return (
     <MotherDiv>
       <Desc>{title}</Desc>
