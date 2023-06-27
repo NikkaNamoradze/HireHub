@@ -15,14 +15,15 @@ function AuthRightLoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
-
   const onLogin = () => {
     if (email.trim() === "" || password.trim() === "") {
+      console.log("შეავსეთ ველები სწორად.");
       return;
     }
 
     if (password.length < 8) {
+      console.log("პაროლი უნდა იყოს 7 სიმბოლოზე დიდი.");
+
       return;
     }
 
@@ -31,6 +32,7 @@ function AuthRightLoginComponent() {
       .then((userCredential) => {
         const user = userCredential.user;
         Cookies.set("uid", user.uid);
+        console.log(user)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,7 +64,9 @@ function AuthRightLoginComponent() {
             setValue={setPassword}
             value={password}
           />
-          <LoginButton onClick={onLogin}>შესვლა</LoginButton>
+          <Link to={"/"}>
+            <LoginButton onClick={onLogin}>შესვლა</LoginButton>
+          </Link>
         </SubContainer>
       </Container>
     </>

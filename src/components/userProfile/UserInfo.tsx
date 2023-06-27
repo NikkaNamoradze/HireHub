@@ -1,25 +1,24 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import editIcon from '../../assets/icons/editIcon.svg';
 import { media } from '../../assets/css/GlobalCss';
 
-
 interface Info {
   username: string;
-  
 }
 
-const UserInfo: React.FC<Info> = ({ username}) => {
+const UserInfo: React.FC<Info> = ({ username }) => {
   return (
     <>
-    <Containerr>
-    <Icon>
-        <img src={editIcon} alt="editIcon" />
-    </Icon> 
-    
-    <Image/>
-    <Title>{username}</Title>
-    </Containerr>
+      <Containerr>
+        <Icon>
+          <img src={editIcon} alt="editIcon" />
+        </Icon>
+
+        <Image />
+        <Title>{username}</Title>
+      </Containerr>
     </>
   );
 };
@@ -27,6 +26,7 @@ const UserInfo: React.FC<Info> = ({ username}) => {
 export default UserInfo;
 
 const Image = styled.div`
+
 margin-left: 63px;
 width: 124px;
 height: 124px;
@@ -47,21 +47,19 @@ const Icon = styled.div`
   right: 20px;
 `;
 const Containerr = styled.div`
-position: relative;
-display: flex;
-align-items: center;
-gap: 36px;
-width: 100%;
-height: 211px;
-flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+  height: 211px;
+  flex-shrink: 0;
 
-border-radius: 24px;
-background: #F4F3F3;
-
+  border-radius: 24px;
+  background: #f4f3f3;
 `;
 const Title = styled.div`
-color: #000;
-font-size: 24px;
-font-family:'BPG Nino Mtavruli';
-
+  color: #000;
+  font-size: 24px;
+  font-family: "BPG Nino Mtavruli";
 `;
