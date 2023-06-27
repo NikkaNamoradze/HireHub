@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 import { Title } from "../other/styledCompnents";
 import { Link } from "react-router-dom";
@@ -7,17 +6,18 @@ import MainC from "./MainC";
 
 
 
-function JobCard({data}:{data:DataInterface[]}) {
+function JobCard({title, data}:{title:string,data:DataInterface[]}) {
 
 
 
   return (
     <>
-      <Title>ახალი ვაკანსიები</Title>
+      <Title>{data.length === 0 ? title + " ვერ მოიძებნა" : title}</Title>
       <Container>
         <CardContainer>
           {data?.map((item, index) => {
             const { id, address, business, name, end_date, working_type, employment_type,approximate_salary } = item;
+            
             return (
             <Link to={'/job/'+id}>
               <OneMore>
@@ -30,7 +30,7 @@ function JobCard({data}:{data:DataInterface[]}) {
                     end_date={end_date}
                     working_type={working_type}
                     employment_type={employment_type}
-                    approximate_salary={employment_type}               
+                    approximate_salary={approximate_salary.text}               
               />
 
               </OneMore>

@@ -41,7 +41,7 @@ function Details({
     <MainContainer>
       {list.map((item, index) => {
         return (
-          item.value === "" || item.value !== null && (
+          item.value === "" || item.value === undefined || item.value !== null && (
             <Container key={index} color={item.color}>
               <Title>{item.title}</Title>
               <Value>{item.value}</Value>
