@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: row; 
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
 `;
 
