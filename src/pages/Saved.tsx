@@ -1,3 +1,4 @@
+import React from 'react'
 import CardDetails from '../components/SmallCard/CardDetails'
 
 function Saved() {

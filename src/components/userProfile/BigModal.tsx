@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "./Input";
 import { useSelector } from "react-redux";
@@ -6,7 +6,7 @@ import { RootState } from "../../store/store";
 import { getDatabase, set, ref } from "@firebase/database";
 import { app } from "../../firebase/config";
 
-function ExperienceModal() {
+function BigModal() {
 
   const [organisation, setOrganisation] = useState("");
   const [position, setPosition] = useState("");
@@ -16,20 +16,9 @@ function ExperienceModal() {
 
   const uid = useSelector((state: RootState) => state.user.uid);
 
-  const generateRandomId = () => {
-    const randomNumber = Math.floor(Math.random() * 1000) + 1;
-    const randomSymbols = Array.from({ length: 3 }, () =>
-      String.fromCharCode(Math.floor(Math.random() * 26) + 97)
-    ).join("");
-    return `${randomNumber}${randomSymbols}`;
-  };
-
   const onSaveExperience = () => {
-    const id = generateRandomId();
-
     const db = getDatabase(app);
-        set(ref(db, "users/" + `${uid}/` + "experience/" + `${id}/`), {
-          id:id,
+        set(ref(db, "users/" + `${uid}/` + "experience/" + `${organisation}/`), {
           organisation:organisation,
           position:position,
           content:content,
@@ -41,7 +30,7 @@ function ExperienceModal() {
 
   return (
     <FormContainer>
-      <Input label={'ორგანიზაცია'} value={organisation} setValue={setOrganisation}/>
+      <Input label={'ორგანიზაცია'}value={organisation} setValue={setOrganisation}/>
       <Input label={'თანამდებობა'} value={position} setValue={setPosition}/>
       <Input label={'მოკლე აღწერა'} value={content} setValue={setContent}/>
       <Input label={'დაწყების თარიღი'} value={startDate} setValue={setStartDate}/>
@@ -51,7 +40,7 @@ function ExperienceModal() {
   );
 }
 
-export default ExperienceModal;
+export default BigModal;
 
 
 const FormContainer = styled.div`

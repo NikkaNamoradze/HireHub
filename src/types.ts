@@ -281,25 +281,17 @@ export interface PayloadInterface {
     vacancies_on_platform: boolean
   }
 
-  export interface ExperienceItemInterface {
-    id:string,
-    organisation: string;
+
+  export interface ProfileItemInterface {
+    id:number;
+    title: string;
     position: string;
     content: string;
     startDate: string;
     endDate: string;
   }
-
-  export interface EducationItemInterface {
-    id:string,
-    university: string;
-    field: string;
-    startDate: string;
-    endDate: string;
-  }
-  
   export interface ProfileSecondItemInterface {
-    id: string;
+    id:number;
     title: string;
   }
   
