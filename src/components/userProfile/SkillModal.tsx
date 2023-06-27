@@ -61,7 +61,7 @@ function SkillModal() {
     remove(skillRef)
       .then(() => {
       })
-      .catch((error) => {
+      .catch(() => {
       });
 
       if(skillData.length === 1){

@@ -1,5 +1,4 @@
-import { Icon, LatLngExpression } from 'leaflet';
-import React from 'react';
+import { Icon } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, } from 'react-leaflet';
 import { styled } from 'styled-components';
 import 'leaflet/dist/leaflet.css'

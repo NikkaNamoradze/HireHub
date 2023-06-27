@@ -1,5 +1,4 @@
 import React from "react";
-import CheckboxLabel from "./CheckBoxLabel";
 import { styled } from "styled-components";
 
 interface items {

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {media} from "../../../src/assets/css/GlobalCss"
-import Cookies from "js-cookie";
 
 
 
@@ -32,7 +31,7 @@ function Navigation() {
       {nav.map((item, index) => {
 
         const {icon, name, path} = item
-        const uid = Cookies.get("uid");
+
 
 
 

@@ -7,7 +7,7 @@ interface ContactFormProps {
   onSubmit: (name: string, email: string, message: string) => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
+const ContactForm: React.FC<ContactFormProps> = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { styled } from 'styled-components'
 import MainInfo1 from './MainInfo1';
 

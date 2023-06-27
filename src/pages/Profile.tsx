@@ -115,7 +115,7 @@ const [displayName, setDisplayName] = useState<string>("");
       }
     });
 
-
+    unsubscribe()
 
   }, []);
 

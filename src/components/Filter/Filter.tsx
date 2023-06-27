@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Item from "./Item";
-import CheckboxLabel from "./CheckBoxLabel";
 
-import Range from "./Range";
+import { media } from "../../assets/css/GlobalCss";
+import { FilterInterface } from "../../types";
 import Dropdown from "../carousel/CarouselSearch/Dropdown";
 import CheckBoxList from "./CheckBoxList";
+import Range from "./Range";
 import { category, employmentType, experience, workType } from "./filterContent";
-import { FilterInterface } from "../../types";
-import { media } from "../../assets/css/GlobalCss";
 
 
 

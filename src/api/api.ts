@@ -1,5 +1,4 @@
 import axios from "axios";
-import { PayloadInterface } from "../types";
 
 export const postRequest = async (url: string, payload: any) => {
   const header = {

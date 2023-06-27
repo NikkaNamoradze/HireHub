@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import search from "../../assets/icons/search.svg";
-import filter from "../../assets/icons/filter.svg";
 import Filter from "./Filter";
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-import filter from "../../assets/icons/filter.svg";
 import { media } from "../../assets/css/GlobalCss";
 
 function Filter({focused, setFocuse}:{ focused:boolean, setFocuse: React.Dispatch<React.SetStateAction<boolean>>}) {

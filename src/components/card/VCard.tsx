@@ -1,4 +1,4 @@
-import React from 'react'
+
 import MainInfo from './MainInfo'
 import { styled } from 'styled-components'
 

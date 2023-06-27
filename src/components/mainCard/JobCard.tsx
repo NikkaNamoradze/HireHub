@@ -63,7 +63,7 @@ const CardContainer = styled.div`
   flex-wrap: wrap; 
   gap: 20px;
   display: grid;
-  z-index: -1;
+  z-index: 0;
   grid-gap: 10px;
 
 `;

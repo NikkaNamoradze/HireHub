@@ -1,4 +1,4 @@
-import React from "react";
+
 import { styled } from "styled-components";
 import LogoIcon from "../../assets/icons/logo.svg";
 import { media } from "../../assets/css/GlobalCss";

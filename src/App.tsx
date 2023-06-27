@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/header/Header";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import store from "./store/store";
 import Cookies from "js-cookie";
 import { login } from "./store/userSlice";

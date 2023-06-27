@@ -31,7 +31,7 @@ function Item({ data, title, setShowModal, setModalTitle }: ItemProps) {
     remove(skillRef)
       .then(() => {
       })
-      .catch((error) => {
+      .catch(() => {
       });
   };
 
@@ -42,7 +42,7 @@ function Item({ data, title, setShowModal, setModalTitle }: ItemProps) {
     remove(skillRef)
       .then(() => {
       })
-      .catch((error) => {
+      .catch(() => {
       });
   };
 

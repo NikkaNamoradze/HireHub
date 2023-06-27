@@ -54,8 +54,7 @@ function AuthRightRegisterComponent() {
           nickname: nickname,
         });
       })
-      .catch((error) => {
-        const errorMessage = error.message;
+      .catch(() => {
       });
   };
 

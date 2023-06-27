@@ -1,6 +1,4 @@
 import { styled } from "styled-components";
-import Info from "./Info";
-import saved from "../../assets/icons/Bookmark.svg";
 import MainInfo from "./MainInfo";
 import { format } from "../../utils/dateFormat";
 import { media } from "../../assets/css/GlobalCss";

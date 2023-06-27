@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { getDatabase, onValue, ref, remove, set } from "firebase/database";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import UpperSection from "./UpperSection";
-import Vigets from "./Vigets";
-import Switcher from "./Switcher";
+import { media } from "../../assets/css/GlobalCss";
+import { app } from "../../firebase/config";
+import { RootState } from "../../store/store";
 import { DataInterface } from "../../types";
 import Description from "./Description";
-import { getDatabase, ref, set, remove, onValue } from "firebase/database";
 import MapComponentn from "./Map";
-import { app } from "../../firebase/config";
-import { media } from "../../assets/css/GlobalCss";
-import { RootState } from "../../store/store";
-import { useSelector } from "react-redux";
+import Switcher from "./Switcher";
+import UpperSection from "./UpperSection";
+import Vigets from "./Vigets";
 
 function MainComponent({ data }: { data: DataInterface }) {
   const uid = useSelector((state: RootState) => state.user.uid);
@@ -50,7 +50,7 @@ function MainComponent({ data }: { data: DataInterface }) {
 
   useEffect(() => {
     const savedarr = [""];
-    const sendedarr = [""];
+
     firebaseData.map((item) => {
       savedarr.push(item.id);
       if (savedarr.includes(id)) {
@@ -78,7 +78,7 @@ function MainComponent({ data }: { data: DataInterface }) {
 
     remove(skillRef)
       .then(() => {})
-      .catch((error: any) => {});
+      .catch(() => {});
   };
 
   const [cv, setCv] = useState<any>();
@@ -90,7 +90,7 @@ function MainComponent({ data }: { data: DataInterface }) {
 
     remove(skillRef)
       .then(() => {})
-      .catch((error: any) => {});
+      .catch(() => {});
 
     const starCountRef = ref(db, "users/" + uid);
     onValue(starCountRef, (snapshot) => {

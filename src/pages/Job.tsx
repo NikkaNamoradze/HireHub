@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import MainComponent from "../components/main_component/MainComponent";
-import JobsList from "../components/job/JobsList";
-import { MainConatiner } from "../components/other/styledCompnents";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Filter from "../components/Filter/Filter";
 import { getRequest } from "../api/api";
-import { FILTER_URL, SUGGEST, VACANCY, payload } from "../api/apiConfig";
-import { DataInterface } from "../types";
-import { useLocation, useParams } from "react-router-dom";
+import { SUGGEST, VACANCY } from "../api/apiConfig";
+import JobsList from "../components/job/JobsList";
 import Loader from "../components/loader/Loader";
+import MainComponent from "../components/main_component/MainComponent";
+import { DataInterface } from "../types";
 function Job() {
   const { id } = useParams();
 

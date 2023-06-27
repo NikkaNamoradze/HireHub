@@ -1,4 +1,4 @@
-import React from "react";
+
 import { styled } from "styled-components";
 import { IMAGE_URL } from "../../api/apiConfig";
 import { media } from "../../assets/css/GlobalCss";

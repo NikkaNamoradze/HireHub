@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import BookmarkIcon from "../../assets/icons/Bookmark.svg";
 import { IMAGE_URL } from "../../api/apiConfig";
 
 import { media } from "../../assets/css/GlobalCss";

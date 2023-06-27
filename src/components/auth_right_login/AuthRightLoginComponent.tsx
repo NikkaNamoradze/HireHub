@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase/config";
 
-import { useDispatch } from 'react-redux';
-import { login } from '../../store/userSlice';
 import { media } from "../../assets/css/GlobalCss";
 import Cookies from "js-cookie";
 
@@ -34,9 +32,8 @@ function AuthRightLoginComponent() {
         Cookies.set("uid", user.uid);
         console.log(user)
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      .catch(() => {
+
       });
   };
 

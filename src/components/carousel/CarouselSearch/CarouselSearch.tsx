@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { styled } from "styled-components";
 import {media} from "../../../assets/css/GlobalCss"
 import Input from "./Input";
-import Dropdown from "./Dropdown";
 import { Link } from "react-router-dom";
 
 function CarouselSearch() {
-  const [city, setCity] = useState<string[]>([]);
+ 
   const [keyword, setKeyword] = useState<string>("");
 
   return (
     <MainContainer>
       <Input value={keyword} setState={setKeyword} />
       <Continer>
-        <Dropdown setState={setCity} />
+        
         <Link
           to={{
             pathname: "/jobs",
-            search: `?keyword=${keyword}&city=${city}`,
+            search: `?keyword=${keyword}`,
           }}
         >
           <Button>ძიება</Button>

@@ -1,11 +1,10 @@
-import React from "react";
+
 import { styled } from "styled-components";
 import Card from "../card/Card";
 import { Title } from "../other/styledCompnents";
 import { Link } from "react-router-dom";
 import { DataInterface } from "../../types";
-import { IMAGE_URL } from "../../api/apiConfig";
-import VCard from "../card/VCard";
+
 
 function NewJobs({data}:{data:DataInterface[]}) {
 

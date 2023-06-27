@@ -1,4 +1,4 @@
-import React from "react";
+
 import styled from "styled-components";
 
 function Item({ title, content }: { title: string; content: JSX.Element }) {

@@ -1,4 +1,3 @@
-import React from 'react'
 import ContactForm from '../components/contact/ContactForm'
 
 function Contact() {
@@ -8,7 +7,7 @@ function Contact() {
   return (
 
     <>
-    <ContactForm onSubmit={function (name: string, email: string, message: string): void {
+    <ContactForm onSubmit={function (): void {
         throw new Error('Function not implemented.')
       } }/>
 

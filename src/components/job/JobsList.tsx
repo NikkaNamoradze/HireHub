@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Card from "../card/Card";
 import { Link } from "react-router-dom";
-import Result from "./Result";
+import styled from "styled-components";
 import { DataInterface } from "../../types";
+import Card from "../card/Card";
+import Result from "./Result";
 
 function JobsList({
   data,

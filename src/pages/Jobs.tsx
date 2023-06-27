@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import MainComponent from "../components/main_component/MainComponent";
 import JobsList from "../components/job/JobsList";
 import styled from "styled-components";

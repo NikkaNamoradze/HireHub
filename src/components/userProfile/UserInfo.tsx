@@ -1,8 +1,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import editIcon from '../../assets/icons/editIcon.svg';
-import { media } from '../../assets/css/GlobalCss';
 
 interface Info {
   username: string;

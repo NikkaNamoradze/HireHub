@@ -1,13 +1,13 @@
+import { getDatabase, ref, set } from "@firebase/database";
+import { onValue, remove } from "firebase/database";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Input from "./Input";
-import Skill from "./Skill";
-import { getDatabase, set, ref } from "@firebase/database";
-import { app } from "../../firebase/config";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { app } from "../../firebase/config";
 import { RootState } from "../../store/store";
 import { ProfileSecondItemInterface } from "../../types";
-import { onValue, remove } from "firebase/database";
+import Input from "./Input";
+import Skill from "./Skill";
 
 function LanguageModal() {
   const [language, setLanguage] = useState("");
@@ -62,7 +62,7 @@ function LanguageModal() {
     remove(skillRef)
       .then(() => {
       })
-      .catch((error) => {
+      .catch(() => {
       });
 
       if(languageData.length === 1){
