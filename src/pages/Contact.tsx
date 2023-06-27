@@ -1,9 +1,18 @@
 import React from 'react'
-import SearchhBar from '../components/SearchBar/SearchhBar'
+import ContactForm from '../components/contact/ContactForm'
 
 function Contact() {
+
+
+  
   return (
-    <><div>Contact</div><SearchhBar /></>
+
+    <>
+    <ContactForm onSubmit={function (name: string, email: string, message: string): void {
+        throw new Error('Function not implemented.')
+      } }/>
+
+    </>
   )
 }
 

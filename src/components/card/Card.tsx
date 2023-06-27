@@ -12,32 +12,30 @@ function Card({
   reqtext,
 
   start_time,
-  end_time
+  end_time,
 }: {
   image: string;
   title: string;
   jobName: string;
   companyName: string;
   reqtext: string;
-  start_time:string
-  end_time: string
-
+  start_time: string;
+  end_time: string;
 }) {
-
-
-
   return (
     <MainConteiner>
       <Div>
-      <MainInfo image={image} title={title} jobName={jobName} companyName={companyName} />
-
-        <SavedImg src={saved} alt="" />
+        <MainInfo
+          image={image}
+          title={title}
+          jobName={jobName}
+          companyName={companyName}
+        />
+        
       </Div>
       <Info />
-      <ReqText dangerouslySetInnerHTML={{ __html: reqtext }}>
-
-      </ReqText>
-      <Time>{format(start_time)+" - " + format(end_time) }</Time>
+      <ReqText dangerouslySetInnerHTML={{ __html: reqtext }}></ReqText>
+      <Time>{format(start_time) + " - " + format(end_time)}</Time>
     </MainConteiner>
   );
 }
@@ -76,22 +74,18 @@ const SavedImg = styled.img`
   height: 30px;
 `;
 
-
 const Div = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-
-
 const MainConteiner = styled.div`
-  
   border-radius: 24px;
   background-color: #f4f3f3;
   padding: 23px;
   display: flex;
   gap: 15px;
+  position: relative;
   flex-direction: column;
-
 `;

@@ -6,9 +6,14 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase/config";
 
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/userSlice';
+
 function AuthRightLoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const onLogin = () => {
     if (email.trim() === "" || password.trim() === "") {
@@ -25,7 +30,7 @@ function AuthRightLoginComponent() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user.uid);
+        dispatch(login(user.uid));
       })
       .catch((error) => {
         const errorCode = error.code;

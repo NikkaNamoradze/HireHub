@@ -4,7 +4,8 @@ import { MainConatiner, Title } from "../components/other/styledCompnents";
 import {postRequest} from "../api/api";
 import { LATEST_URL, payload } from "../api/apiConfig";
 import { DataInterface } from "../types";
-import JobCard from "../components/mainCard/Jobcard";
+import JobCard from "../components/mainCard/JobCard";
+import Loader from "../components/loader/Loader";
 
 function Home() {
   
@@ -19,14 +20,16 @@ function Home() {
     }
     req()
   })
-  console.log("=====",data)
+  
+  if(!data){
+    return(<Loader/>)
+  }
 
   return (
     <MainConatiner>
       <Carousel />
-      <JobCard data={data as DataInterface[]}/>
+      <JobCard title={"ახალი ვაკანსიები"} data={data as DataInterface[]}/>
 
-      {/* <NewJobs  data={data as DataInterface[]}/> */}
     </MainConatiner>
   );
 }
