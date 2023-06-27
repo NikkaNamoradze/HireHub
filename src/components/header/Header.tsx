@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 import Navigation from "./Navigation";
-import HeaderProfile from "./HeaderProfile";
+
 import { Link } from "react-router-dom";
 import { media } from "../../assets/css/GlobalCss";
 import logo from "../../../public/logo.svg"
+import HeaderProfile from "./HeaderProfile";
 
 function Header() {
   return (

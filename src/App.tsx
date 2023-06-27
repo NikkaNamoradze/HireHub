@@ -4,9 +4,13 @@ import { Provider, useDispatch } from "react-redux";
 import store from "./store/store";
 import Cookies from "js-cookie";
 import { login } from "./store/userSlice";
+import { useLocation } from 'react-router-dom';
 
 function AppWrapper() {
   const uid = Cookies.get("uid");
+  const location = useLocation();
+  const currentPath = location.pathname;
+
 
   if (uid !== undefined || uid !== "") {
     store.dispatch(login(uid));
@@ -21,7 +25,10 @@ function AppWrapper() {
   function App() {
     return (
       <>
-        <Header />
+      {
+        currentPath==="/login" || currentPath === "/registration" ? null :<Header />
+      }
+
         <Outlet />
       </>
     )
