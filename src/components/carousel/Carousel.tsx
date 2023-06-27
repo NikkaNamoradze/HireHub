@@ -3,24 +3,10 @@ import styled from "styled-components";
 import Arrows from "./Arrows";
 import CarouselContent from "./carouselContent/CarouselContent";
 import CarouselSearch from "./CarouselSearch/CarouselSearch";
+import { DataInterface } from "../../types";
 
-const Carousel = () => {
+const Carousel = ({data}:{data:DataInterface[]}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const data = [
-    {
-      image:
-        "https://media.allure.com/photos/621e32e93c1316abf45cb59b/1:1/w_2911,h_2911,c_limit/kendall%20jenner%20.jpg",
-    },
-    {
-      image:
-        "https://media.allure.com/photos/621e32e93c1316abf45cb59b/1:1/w_2911,h_2911,c_limit/kendall%20jenner%20.jpg",
-    },
-    {
-      image:
-        "https://media.allure.com/photos/621e32e93c1316abf45cb59b/1:1/w_2911,h_2911,c_limit/kendall%20jenner%20.jpg",
-    },
-  ];
 
   const handleNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % data.length);
