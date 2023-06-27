@@ -1,20 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
 
-function Description() {
+function Description({ description }: { description: string }) {
   return (
     <Container>
       <Title>ვაკანსიის აღწერა </Title>
-      <Desc>
-        Collaborate with the Digital Marketing team to propose, design, &
-        deliver wireframes, user journeys, and UI mock-ups. Collaborate with the
-        SEO & Content team to establish best practices for high-performing
-        websites.. Collaborate with Front-End Developers to ensure high quality
-        & bug-free deliverables. Develop high-fidelity UI prototypes for
-        responsive websites & maintain consistency of our design system. Keep
-        up-to-date with the latest UI/UX & web design trends so as to propose
-        improvements on current websites.
-      </Desc>
+      {description && (
+        <Desc dangerouslySetInnerHTML={{ __html: description }}></Desc>
+      )}
     </Container>
   );
 }
@@ -26,7 +19,6 @@ const Title = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-
   color: #f5f4f4;
 `;
 const Desc = styled.div`
@@ -35,11 +27,16 @@ const Desc = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-
+  width: 100%;
   color: #acacac;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
 `;
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap:12px
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
 `
