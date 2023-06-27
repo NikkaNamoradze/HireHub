@@ -4,19 +4,20 @@ import { styled } from "styled-components";
 
 interface JobDescriptionProps {
   description: string;
+  title:string
 }
 
-const JobDescription: React.FC<JobDescriptionProps> = ({ description }) => {
+const Description: React.FC<JobDescriptionProps> = ({ description , title}) => {
   console.log(description)
   return (
     <MotherDiv>
-      <Desc>სამუშაოს აღწერა</Desc>
+      <Desc>{title}</Desc>
       <Desc2 dangerouslySetInnerHTML={{__html:description}}></Desc2>
     </MotherDiv>
   );
 }
 
-export default JobDescription;
+export default Description;
 
 const MotherDiv = styled.div`
   display: flex;
@@ -26,7 +27,6 @@ const MotherDiv = styled.div`
 `;
 
 const Desc = styled.div`
-  font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -38,11 +38,10 @@ const Desc = styled.div`
 const Desc2 = styled.div`
   display: flex;
   justify-content: center;
-  font-family: "Urbanist";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 14px;
+  line-height: 25px;
   flex-direction: column;
 
   color: #222222;
@@ -53,6 +52,6 @@ const Desc2 = styled.div`
     text-align: left!important;
     font-size: 15px!important;
     line-height: 22.5px!important;
-    font-family: Helvetica Neue!important;
+
   }
 `;

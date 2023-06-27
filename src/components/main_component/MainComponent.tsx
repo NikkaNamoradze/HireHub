@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import UpperSection from "./UpperSection";
 import Vigets from "./Vigets";
 import Switcher from "./Switcher";
-import JobDescription from "./Jobdescription";
+
 import { DataInterface } from "../../types";
+import Description from "./Description";
+
+
+import MapComponentn from "./Map";
 
 function MainComponent({ data }: { data: DataInterface }) {
-  console.log("data main componente -- ", data)
   
   if (!data) {
     return null; 
   }
+
+  const [swithch, setSwitch ] = useState<boolean>(true)
+
   
   const {  address, info, business, name, working_type,employment_type, approximate_salary , end_date } = data;
   return (
@@ -24,8 +30,19 @@ function MainComponent({ data }: { data: DataInterface }) {
           image={business?.image.name}
         />
         <Vigets salary={approximate_salary.text}  jobType={working_type} dedline={end_date} employment_type={employment_type}  />
-        <Switcher />
-        <JobDescription description={info.about_role} />
+        <Switcher swithch={swithch} setSwitch={setSwitch} />
+
+        {
+          swithch?
+          <Description title={"სამუშაოს აღწერა"} description={info.about_role} />
+          :
+          <>
+          <Description title={"კომპანიის აღწერა"} description={business.description} />
+          {address&&<MapComponentn address={address?.description} lat={address?.lat} lng={address?.lng}/>}
+          </>
+        }
+
+
         <Apply>დაკავშირება</Apply>
       </Content>
     </Container>

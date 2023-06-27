@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Urbanist';
+    font-family: "BPG Algeti", sans-serif !important;
     text-decoration: none;
     ::-webkit-scrollbar {
       display: none;
@@ -35,5 +35,7 @@ font-size: 13px;
 text-decoration: none;
 
 line-height: 129%;
+font-family: "BPG Algeti", sans-serif !important;
+
   }
 `;
