@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import icon from "../../../assets/icons/searchIcon.svg";
+import {media} from "../../../assets/css/GlobalCss"
 import Input from "./Input";
 import Dropdown from "./Dropdown";
 import { Link } from "react-router-dom";
@@ -34,7 +34,6 @@ const MainContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 74px -2px rgba(0, 0, 0, 0.06);
   border-radius: 32px;
-  width: 50%;
   height: 82px;
   display: flex;
   padding: 13px 15px 15px 36px;
@@ -42,9 +41,15 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   transform: translate(-50%, -60%);
+
+  ${media.phone(`
+    width: auto;
+  `)}
+
+  
 `;
 const Continer = styled.div`
-  gap: 26px;
+  gap: 10px;
   display: flex;
 `;
 
@@ -63,4 +68,10 @@ const Button = styled.div`
   line-height: 20px;
 
   color: #ffffff;
+
+  ${media.phone(`
+    padding: 14px 25px;
+
+  `)}
+  
 `;

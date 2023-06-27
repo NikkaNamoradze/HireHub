@@ -9,7 +9,7 @@ const sizes = {
   smallDevices:575.98
 };
 
-const media = Object.keys(sizes).reduce((acc, label) => {
+export const media = Object.keys(sizes).reduce((acc, label) => {
   const sizeLabel = label as keyof typeof sizes;
   acc[sizeLabel] = (style: string) => `
     @media (max-width: ${sizes[sizeLabel]}px) {

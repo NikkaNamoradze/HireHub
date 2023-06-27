@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Info from "./Info";
-
+import {media} from "../../../assets/css/GlobalCss"
 import Description from "./Description";
 import Vigets from "../../main_component/Vigets";
 
@@ -12,7 +12,9 @@ function CarouselContent({ item }: { item: any }) {
       <Div>
         <InfoContainer>
           <Info image={image} />
-          <Vigets/>
+          <Container>
+          <Vigets salary={""} jobType={""} dedline={""} employment_type={""} />
+          </Container>
         </InfoContainer>
         <Description />
       </Div>
@@ -22,6 +24,13 @@ function CarouselContent({ item }: { item: any }) {
 
 export default CarouselContent;
 
+
+const Container = styled.div`
+  ${media.phone(`
+    display:none;
+  `)}
+
+`;
 const Div = styled.div`
     width: 100%;
     display: flex;

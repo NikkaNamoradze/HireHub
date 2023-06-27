@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import saved from "../../assets/icons/Bookmark.svg";
 import Viget from "../main_component/Vigets"
 import MainInfo1 from "./MainInfo1";
+import {media} from "../../assets/css/GlobalCss"
 
 
 function MainC({
@@ -71,6 +72,11 @@ justify-content:space-between;
 const InfosDic = styled.div`
 display: flex;
 justify-content:flex-end;
+
+${media.tablet(`
+    display: none;
+  `)}
+
 
 `;
 
