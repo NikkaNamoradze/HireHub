@@ -41,7 +41,7 @@ The Job Finder Website is built using the following technologies and libraries:
 
 ## Host
 
-- Clone the repository:
+
 
    ```shell
    https://hirehub-vacancy.netlify.app/
