@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import Viget from "../main_component/Vigets";
 import MainInfo1 from "./MainInfo1";
+import {media} from "../../assets/css/GlobalCss"
 
 function MainC({
   image,
@@ -55,8 +56,14 @@ const OneMore = styled.div`
 `;
 
 const InfosDic = styled.div`
-  display: flex;
-  justify-content: flex-end;
+
+display: flex;
+justify-content:flex-end;
+
+${media.tablet(`
+    display: none;
+  `)}
+
 `;
 
 const SavedImg = styled.img`
