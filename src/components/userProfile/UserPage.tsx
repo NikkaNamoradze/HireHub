@@ -4,9 +4,12 @@ import Section from './Section';
 import MiniBox from './MiniBox';
 import UserInfo from './UserInfo';
 import add from '../../assets/icons/add.svg';
+import JobModal from './JobModal';
+import MiniModal from './MiniModal';
 
 
 function UserPage() {
+
   return (
     <Master>
     <MainC>
@@ -67,7 +70,10 @@ function UserPage() {
         </C>
       </Container>
     </MainC>
+    <JobModal/>
+    <MiniModal/>
     </Master>
+    
   );
 }
 

@@ -1,19 +1,63 @@
 import { styled } from "styled-components";
 import BackArrow from "../../assets/icons/Back.svg";
 import InputComponent from "../Inputs/InputComponent";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../firebase/config";
 
 function AuthRightLoginComponent() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onLogin = () => {
+    if (email.trim() === "" || password.trim() === "") {
+      console.log("Please fill in all fields.");
+      return;
+    }
+
+    if (password.length < 8) {
+      console.log("Password must be at least 8 characters long.");
+      return;
+    }
+
+    const auth = getAuth(app);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.uid);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
   return (
     <>
       <Container>
-        <Icon>
-          <img src={BackArrow} alt="Back" />
-        </Icon>
+        <Link to={"/"}>
+          <Icon>
+            <img src={BackArrow} alt="Back" />
+          </Icon>
+        </Link>
 
         <SubContainer>
-          <InputComponent label="იმეილი" placeholder="შეიყვანეთ იმეილი" />
-          <InputComponent label="პაროლი" placeholder="შეიყვანეთ პაროლი" showPassword={true}/>
-          <LoginButton>შესვლა</LoginButton>
+          <InputComponent
+            label="იმეილი"
+            placeholder="შეიყვანეთ იმეილი"
+            setValue={setEmail}
+            value={email}
+          />
+          <InputComponent
+            label="პაროლი"
+            placeholder="შეიყვანეთ პაროლი"
+            showPassword={true}
+            setValue={setPassword}
+            value={password}
+          />
+          <LoginButton onClick={onLogin}>შესვლა</LoginButton>
         </SubContainer>
       </Container>
     </>

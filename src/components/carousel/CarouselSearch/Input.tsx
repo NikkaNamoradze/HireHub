@@ -1,11 +1,11 @@
 
 import icon from "../../../assets/icons/searchIcon.svg";
 import { styled } from "styled-components";
-function Input() {
+function Input({value, setState}:{value:string, setState: React.Dispatch<React.SetStateAction<string>>}) {
   return (
     <InputContainer>
       <img src={icon} alt="" />
-      <Search type="text" placeholder="ვაკანსიების ძიება" />
+      <Search type="text" placeholder="ვაკანსიების ძიება" value={value} onChange={(e)=>{setState(e.target.value)}} />
     </InputContainer>
   );
 }

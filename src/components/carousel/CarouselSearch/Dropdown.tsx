@@ -1,22 +1,53 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 import DownArrow from "../../../assets/icons/DownArrow.svg";
-function Dropdown() {
+function Dropdown({
+  filter,
+  setState,
+}: {
+  filter?: boolean;
+  setState: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
   const [city, setCity] = useState<string>("");
   const item = [
-    "თბილისი",
-    "ბათუმი",
-    "სტეფანწმინდა",
-    "რუსთავი",
-    "აჭარის",
-    "ავტ. რესპუბლიკა",
-    "ბორჯომი",
-    "საქართველო",
+    {
+      name: "თბილისი",
+      value: "თბილისი",
+    },
+    {
+      name: "ბათუმი",
+      value: "ბათუმი",
+    },
+    {
+      name: "სტეფანწმინდა",
+      value: "სტეფანწმინდა",
+    },
+
+    {
+      name: "რუსთავი",
+      value: "რუსთავი",
+    },
+    {
+      name: "აჭარის ავტ. რესპუბლიკა",
+      value: "აჭარის ავტონომიური რესპუბლიკა",
+    },
+    {
+      name: "ბორჯომი",
+      value: "ბორჯომი",
+    },
+    {
+      name: "საქართველო",
+      value: "საქართველო",
+    },
+    {
+      name: "სიღნაღი",
+      value: "სიღნაღი",
+    },
   ];
 
   return (
     <MainConatiner>
-      <DropDown>
+      <DropDown filter={filter}>
         {city === "" ? "ქალაქები" : city}
         <img src={DownArrow} alt="" />
       </DropDown>
@@ -24,11 +55,14 @@ function Dropdown() {
         {item.map((item, index) => {
           return (
             <Item
-              focused={item === city}
+              focused={item.name === city}
               key={index}
-              onClick={() => setCity(item)}
+              onClick={() => {
+                setCity(item.name);
+                setState( [item.value]);;
+              }}
             >
-              {item}
+              {item.name}
             </Item>
           );
         })}
@@ -50,13 +84,13 @@ const DropdownContent = styled.div`
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.098);
   z-index: 1;
 `;
-const DropDown = styled.div`
+const DropDown = styled.div<{ filter?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 18px 25px;
   gap: 40px;
-  background: #f4f3f3;
+  background: ${({ filter }) => (filter ? "#ffff" : "#f4f3f3")};
   border-radius: 22px;
   font-style: normal;
   font-weight: 500;
