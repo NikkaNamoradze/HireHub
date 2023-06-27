@@ -9,8 +9,12 @@ import { getDatabase, ref, set, remove, onValue } from "firebase/database";
 
 import MapComponentn from "./Map";
 import { app } from "../../firebase/config";
+
+import { media } from "../../assets/css/GlobalCss";
+
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
+
 
 function MainComponent({ data }: { data: DataInterface }) {
   const uid = useSelector((state: RootState) => state.user.uid);
@@ -85,12 +89,20 @@ function MainComponent({ data }: { data: DataInterface }) {
 
   useEffect(() => {
     const db = getDatabase(app);
+
+    const skillRef = ref(db, "users/" + userId + "/saved" + `/${jobId}/`);
+    
+    remove(skillRef).then(() => {
+    })
+    .catch((error:any) => {
+
     const starCountRef = ref(db, "users/" + uid);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       delete data.saved;
 
       setCv(data);
+
     });
   }, []);
 
@@ -208,4 +220,10 @@ const Apply = styled.button<{isSended:boolean}>`
   border-radius: 21px;
   color: #ffffff;
   margin: auto;
+
+  ${media.phone(`
+    font-size: 16px;
+    padding: 18px 100px;
+
+  `)}
 `;

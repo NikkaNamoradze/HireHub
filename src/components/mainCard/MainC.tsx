@@ -62,16 +62,8 @@ justify-content:flex-end;
 
 ${media.tablet(`
     display: none;
-  `)}
-
-`;
-
-const SavedImg = styled.img`
-  display: flex;
-  height: 30px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  `)
+  }
 `;
 
 const Div = styled.div`
@@ -79,11 +71,7 @@ const Div = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const ImgDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+
 
 const MainConteiner = styled.div`
   position: relative;

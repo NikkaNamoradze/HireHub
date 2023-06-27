@@ -7,6 +7,7 @@ import { getDatabase, ref, remove } from "firebase/database";
 import { useSelector } from "react-redux";
 import { app } from "../../firebase/config";
 import { RootState } from "../../store/store";
+import { media } from "../../assets/css/GlobalCss";
 
 interface ItemProps {
   data: (ExperienceItemInterface | EducationItemInterface)[];
@@ -29,10 +30,8 @@ function Item({ data, title, setShowModal, setModalTitle }: ItemProps) {
 
     remove(skillRef)
       .then(() => {
-        console.log(`Skill with ID ${id} deleted successfully.`);
       })
       .catch((error) => {
-        console.error(`Error deleting skill with ID ${id}:`, error);
       });
   };
 
@@ -42,10 +41,8 @@ function Item({ data, title, setShowModal, setModalTitle }: ItemProps) {
 
     remove(skillRef)
       .then(() => {
-        console.log(`Skill with ID ${id} deleted successfully.`);
       })
       .catch((error) => {
-        console.error(`Error deleting skill with ID ${id}:`, error);
       });
   };
 
@@ -122,5 +119,10 @@ const Container = styled.div`
     font-weight: "400";
     word-wrap: "break-word";
     align-self: flex-start;
+    
+    ${media.phone(`
+      font-size: 20px;
+
+    `)}
   }
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { IMAGE_URL } from "../../api/apiConfig";
+import { media } from "../../assets/css/GlobalCss";
 
 function MainInfo({
   image,
@@ -57,6 +58,11 @@ const JobName = styled.div`
   font-size: 18px;
   line-height: 18px;
   color: #000000;
+
+  ${media.phone(`
+    font-size: 16px;
+
+  `)}
 `;
 
 const CompanyName = styled.div`

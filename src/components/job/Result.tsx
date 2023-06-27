@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../../assets/css/GlobalCss";
 
 function Result({title, count}:{title:string, count:number}) {
   return <Container>{title} <Quantity>{count} ვაკანსია</Quantity> </Container>;
@@ -20,6 +21,13 @@ background-color: #222222;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${media.phone(`
+      width: 70%;
+      font-size: 15px;
+
+
+    `)}
 `;
 const Quantity = styled.span`
   font-style: normal;

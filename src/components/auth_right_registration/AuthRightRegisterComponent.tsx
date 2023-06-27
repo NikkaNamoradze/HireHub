@@ -5,6 +5,7 @@ import styled from "styled-components";
 import BackArrow from "../../assets/icons/Back.svg";
 import InputComponent from "../Inputs/InputComponent";
 import { app } from "../../firebase/config";
+import { media } from "../../assets/css/GlobalCss";
 
 function AuthRightRegisterComponent() {
   const [nickname, setNickname] = useState("");
@@ -18,22 +19,18 @@ function AuthRightRegisterComponent() {
 
   const handleRegistration = () => {
     if (nickname.trim() === "") {
-      console.log("შეიყვანეთ სრული სახელი");
       return;
     }
 
     if (password.trim() === "") {
-      console.log("პაროლის შეყვანა აუცილებელია");
       return;
     }
 
     if (password.length < 8) {
-      console.log("პაროლი უნდა იყოს 7 სიმბოლოზე მეტი");
       return;
     }
 
     if (!checkboxChecked) {
-      console.log("დაეთანხმეთ წესებსა და პირობებს");
       return;
     }
 
@@ -41,8 +38,6 @@ function AuthRightRegisterComponent() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user.uid);
-
         const db = getDatabase(app);
         set(ref(db, "users/" + `${user.uid}/` + "personal_data/"), {
           email: email,
@@ -52,7 +47,6 @@ function AuthRightRegisterComponent() {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
       });
   };
 
@@ -112,6 +106,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+
+  ${media.phone(`
+      position: unset;
+      margin-top: 40px
+    `)}
 `;
 
 const Title = styled.p`
