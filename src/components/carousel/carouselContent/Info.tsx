@@ -1,15 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
+import { IMAGE_URL } from "../../../api/apiConfig";
 
-function Info({ image }: { image: string }) {
+function Info({ image , title,companyName,jobName}: {title:string, companyName:string, jobName:string, image: string }) {
   return (
     <>
       <Div>
-        <Image src={image} alt="" loading="lazy" />
+        <Image src={IMAGE_URL(image)} alt="" loading="lazy" />
         <DivConatiner>
-          <Title>Hatypo Studio</Title>
-          <JobName>UI Designer</JobName>
-          <CompanyName>Surakarta, ID - Onsite</CompanyName>
+          <Title>{title}</Title>
+          <JobName>{jobName}</JobName>
+          <CompanyName>{companyName}</CompanyName>
         </DivConatiner>
       </Div>
     </>

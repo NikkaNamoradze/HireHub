@@ -15,11 +15,13 @@ function SeconItem({
   setShowModal: React.Dispatch<React.SetStateAction<number>>;
   setModalTitle: React.Dispatch<React.SetStateAction<string | undefined>>;
 }) {
+
+
   return (
     <Container>
       <Icon
         onClick={() => {
-          setShowModal(2);
+          setShowModal(title === "უნარები" ? 3 : 4);
           setModalTitle("დაამატე " + title);
         }}
       >

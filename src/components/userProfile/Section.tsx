@@ -1,32 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import editIcon from "../../assets/icons/editIcon.svg";
+import Delete from "../../assets/icons/delete.svg";
 
 interface SectionProps {
+  id: string;
   title: string;
   position: string;
-  content: string;
+  content?: string;
   startDate: string;
   endDate: string;
-  setShowModal: React.Dispatch<React.SetStateAction<number>>;
-  setModalTitle: React.Dispatch<React.SetStateAction<string | undefined>>
-
+  onClick: (id:string) => void;
 }
 
 const Section: React.FC<SectionProps> = ({
+  id,
   title,
   position,
   content,
   startDate,
   endDate,
-  setShowModal,
-  setModalTitle
-  
+  onClick
 }) => {
+
   return (
     <Container>
-      <Icon onClick={()=>{setShowModal(1); setModalTitle("ჩასწორება")}}>
-        <img src={editIcon} alt="editIcon" />
+      <Icon onClick={()=> onClick(id)}>
+        <img width={27} height={27} src={Delete} alt="DeleteIcon" />
       </Icon>
       <div>
         <Date>{startDate}</Date>

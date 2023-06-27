@@ -3,15 +3,13 @@ import styled from 'styled-components';
 
 interface Box {
   title: string;
-  
 }
 
-const MiniBox: React.FC<Box> = ({ title}) => {
+const MiniBox: React.FC<Box> = ({ title }: { title: string }) => {
   return (
     <Containerr>
       <Title><p>{title}</p></Title>
     </Containerr>
-
   );
 };
 
