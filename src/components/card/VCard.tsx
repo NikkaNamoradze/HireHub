@@ -7,10 +7,7 @@ function VCard({
     title,
     jobName,
     companyName,
-    reqtext,
   
-    start_time,
-    end_time
   }: {
     image: string;
     title: string;

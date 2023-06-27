@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import LogoIcon from "../../assets/icons/logo.svg";
+import { media } from "../../assets/css/GlobalCss";
 
 function AuthLeftComponent() {
   return (
@@ -12,7 +13,7 @@ function AuthLeftComponent() {
         <Slogan>
           "თუ არ იმუშავებ არ გექნება ფული, არ გექნება ფული არ გექნება საშუალება
           იყიდო საჭმელი, ვერ იყიდი საჭმელს და ავად გახდები, ავად გახდები და ვერ
-          იმკურნალებ რადგან ფული არ გაქვს, ვერ იმკურნალებ და მოკვდები, ამიტომ
+          იმკურნალებ, ვერ იმკურნალებ და მოკვდები, ამიტომ
           იმუშავე, სამუშაოდ კი შეარჩიე ჩვენი პლატფორმა HireHub"
         </Slogan>
       </Container>
@@ -30,6 +31,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+
+  ${media.phone(`
+      display:none;
+
+    `)}
 `;
 
 const Icon = styled.div`
@@ -45,4 +51,6 @@ const Slogan = styled.p`
   color: white;
   margin-left: 50px;
   margin-right: 50px;
+
+
 `;

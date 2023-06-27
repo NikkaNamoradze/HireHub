@@ -6,9 +6,9 @@ import Switcher from "./Switcher";
 import { DataInterface } from "../../types";
 import Description from "./Description";
 import { getDatabase, ref, set, remove, onValue } from "firebase/database";
-
 import MapComponentn from "./Map";
 import { app } from "../../firebase/config";
+import { media } from "../../assets/css/GlobalCss";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
@@ -41,25 +41,25 @@ function MainComponent({ data }: { data: DataInterface }) {
     const starCountRef = ref(db, "users/" + uid + "/saved");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      const arr = Object.values(data);
-
-      setFirebaseData(arr as DataInterface[]);
+      if (data) {
+        const arr = Object.values(data);
+        setFirebaseData(arr as DataInterface[]);
+      }
     });
-  }, []);
+  }, [uid]);
 
   useEffect(() => {
     const savedarr = [""];
     const sendedarr = [""];
     firebaseData.map((item) => {
       savedarr.push(item.id);
-
       if (savedarr.includes(id)) {
         setIsSaved(true);
       } else {
         setIsSaved(false);
       }
     });
-  }, [firebaseData, data, isSaved]);
+  }, [firebaseData, id]);
 
   function writeJob({ userId, jobId }: { userId: string; jobId: string }) {
     const db = getDatabase(app);
@@ -85,14 +85,22 @@ function MainComponent({ data }: { data: DataInterface }) {
 
   useEffect(() => {
     const db = getDatabase(app);
+
+    const skillRef = ref(db, "users/" + uid + "/saved" + `/${id}/`);
+
+    remove(skillRef)
+      .then(() => {})
+      .catch((error: any) => {});
+
     const starCountRef = ref(db, "users/" + uid);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      delete data.saved;
-
-      setCv(data);
+      if (data) {
+        delete data.saved;
+        setCv(data);
+      }
     });
-  }, []);
+  }, [uid, id]);
 
   function sedCV({
     userId,
@@ -106,12 +114,12 @@ function MainComponent({ data }: { data: DataInterface }) {
     const db = getDatabase(app);
     set(ref(db, "CV/" + `${companyID}/` + `/${jobName}/${userId}`), cv);
   }
+
   const [isSended, setIsSend] = useState(false);
 
-  useEffect(()=>{
-
-    setIsSend(false)
-  },[data])
+  useEffect(() => {
+    setIsSend(false);
+  }, [data]);
 
   return (
     <Container>
@@ -136,15 +144,12 @@ function MainComponent({ data }: { data: DataInterface }) {
         <Switcher swithch={swithch} setSwitch={setSwitch} />
 
         {swithch ? (
-          <Description
-            title={"სამუშაოს აღწერა"}
-            description={info.about_role}
-          />
+          <Description title={"სამუშაოს აღწერა"} description={info?.about_role} />
         ) : (
           <>
             <Description
               title={"კომპანიის აღწერა"}
-              description={business.description}
+              description={business?.description}
             />
             {address && (
               <MapComponentn
@@ -158,21 +163,18 @@ function MainComponent({ data }: { data: DataInterface }) {
 
         <Apply
           onClick={() => {
-            if(uid){
-            sedCV({
-              userId: uid as string,
-              jobName: name,
-              companyID: business.uid,
-            });
-            setIsSend(true);
-          }}}
-
+            if (uid) {
+              sedCV({
+                userId: uid,
+                jobName: name,
+                companyID: business?.uid,
+              });
+              setIsSend(true);
+            }
+          }}
           isSended={isSended}
         >
-          {
-            isSended?"წარმატებით გაიგზავნა": "რეზიუმეს გაგზავნა"
-          }
-
+          {isSended ? "წარმატებით გაიგზავნა" : "რეზიუმეს გაგზავნა"}
         </Apply>
       </Content>
     </Container>
@@ -199,13 +201,18 @@ const Content = styled.div`
   gap: 23px;
 `;
 
-const Apply = styled.button<{isSended:boolean}>`
+const Apply = styled.button<{ isSended: boolean }>`
   padding: 18px 256px;
   gap: 10px;
   transition: 0.3s;
   cursor: pointer;
-  background: ${({isSended})=>isSended?"#656565":"#222222"};
+  background: ${({ isSended }) => (isSended ? "#656565" : "#222222")};
   border-radius: 21px;
   color: #ffffff;
   margin: auto;
+
+  ${media.phone(`
+    font-size: 16px;
+    padding: 18px 100px;
+  `)}
 `;

@@ -112,6 +112,8 @@ const MainContainer = styled.div`
   margin: auto;
   width: calc(100% - 64px);
   height: calc(100vh - 81.11px);
+  flex-direction: column;
+
 `;
 
 const Content = styled.div`

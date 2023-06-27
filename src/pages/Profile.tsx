@@ -15,6 +15,8 @@ import {
   ExperienceItemInterface,
   ProfileSecondItemInterface,
 } from "../types";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import EducationModal from "../components/userProfile/EducationalModal";
 import SkillModal from "../components/userProfile/SkillModal";
 
@@ -48,6 +50,7 @@ function Profile() {
           setExpData(experienceData);
         }
       });
+
 
       // Fetch education data
       const educationRef = ref(db, `users/${uid}/university`);
@@ -96,11 +99,30 @@ function Profile() {
 
     fetchData();
   }, [uid]);
+const [displayName, setDisplayName] = useState<string>("");
+
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        const userDisplayName = user.displayName;
+        setDisplayName(userDisplayName as string);
+        console.log(user)
+      } else {
+        setDisplayName("");
+      }
+    });
+
+
+
+  }, []);
 
   return (
     <Master>
       <MainC>
-        <UserInfo username="irinka" />
+        <UserInfo username={displayName } />
         <Item
           title="სამუშაო გამოცდილება"
           data={expData}
@@ -163,3 +185,6 @@ const MainC = styled.div`
   width: 100%;
   gap: 32px;
 `;
+
+
+
