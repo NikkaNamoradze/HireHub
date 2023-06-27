@@ -1,10 +1,15 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import { useState } from "react";
 import styled from "styled-components";
 import BackArrow from "../../assets/icons/Back.svg";
 import InputComponent from "../Inputs/InputComponent";
 import { app } from "../../firebase/config";
+import { Link } from "react-router-dom";
 
 function AuthRightRegisterComponent() {
   const [nickname, setNickname] = useState("");
@@ -41,7 +46,10 @@ function AuthRightRegisterComponent() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user.uid);
+
+        updateProfile(user, {
+          displayName: nickname
+        });
 
         const db = getDatabase(app);
         set(ref(db, "users/" + `${user.uid}/` + "personal_data/"), {
@@ -59,9 +67,11 @@ function AuthRightRegisterComponent() {
   return (
     <>
       <Container>
-        <Icon>
-          <img src={BackArrow} alt="Back" />
-        </Icon>
+        <Link to={"/"}>
+          <Icon>
+            <img src={BackArrow} alt="Back" />
+          </Icon>
+        </Link>
 
         <SubContainer>
           <Title>რეგისტრაცია</Title>
@@ -95,7 +105,9 @@ function AuthRightRegisterComponent() {
               ვეთანხმები წესებსა და პირობებს
             </CheckboxLabel>
           </CheckboxContainer>
-          <Button onClick={handleRegistration}>რეგისტრაცია</Button>
+          <Link to={"/login"}>
+            <Button onClick={handleRegistration}>რეგისტრაცია</Button>
+          </Link>
         </SubContainer>
       </Container>
     </>
