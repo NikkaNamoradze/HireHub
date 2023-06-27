@@ -12,11 +12,8 @@ const UserInfo: React.FC<Info> = ({ username}) => {
   return (
     <>
     <Containerr>
-    <Icon>
-        <img src={editIcon} alt="editIcon" />
-    </Icon> 
+
     
-    <Image/>
     <Title>{username}</Title>
     </Containerr>
     </>
@@ -47,7 +44,7 @@ gap: 36px;
 width: 100%;
 height: 211px;
 flex-shrink: 0;
-
+padding-left: 70px;
 border-radius: 24px;
 background: #F4F3F3;
 

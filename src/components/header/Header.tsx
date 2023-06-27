@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import Navigation from "./Navigation";
-import HeaderProfile from "./HeaderProfile";
 import { Link } from "react-router-dom";
 import { media } from "../../assets/css/GlobalCss";
 import logo from "../../../public/logo.svg"
@@ -14,9 +13,7 @@ function Header() {
       <NavigationConatiner>
 
         <Navigation />
-        <Link to={"/profile"}>
-          <HeaderProfile />
-        </Link>
+
       </NavigationConatiner>
     </Conatainer>
   );
