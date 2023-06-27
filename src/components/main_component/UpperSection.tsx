@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import BookmarkIcon from "../../assets/icons/Bookmark.svg";
 import { IMAGE_URL } from "../../api/apiConfig";
+
 import { media } from "../../assets/css/GlobalCss";
+
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+
 
 const UpperSection = ({
   isSaved,
@@ -25,6 +30,9 @@ const UpperSection = ({
   location: string;
   setIsSaved: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+
+  const uid = useSelector((state: RootState) => state.user.uid);
+
   return (
     <Container>
       <Div>
@@ -39,15 +47,16 @@ const UpperSection = ({
       <Icon
         isSaved={isSaved}
         onClick={() => {
+          if(uid){
           if (!isSaved) {
             setIsSaved((e) => !e);
-            writeJob({ userId: "YOUR_USER_ID", jobId: id });
+            writeJob({ userId: uid, jobId: id });
           } else {
             setIsSaved((e) => !e);
 
-            onDeleteJob({ userId: "YOUR_USER_ID", jobId: id });
+            onDeleteJob({ userId: uid, jobId: id });
           }
-        }}
+        }}}
       >
         <svg
           width="26"

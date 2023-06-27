@@ -40,9 +40,9 @@ function AuthRightRegisterComponent() {
         const user = userCredential.user;
         const db = getDatabase(app);
         set(ref(db, "users/" + `${user.uid}/` + "personal_data/"), {
-          email:email,
-          password:password,
-          nickname:nickname,
+          email: email,
+          password: password,
+          nickname: nickname,
         });
       })
       .catch((error) => {
@@ -58,9 +58,10 @@ function AuthRightRegisterComponent() {
         </Icon>
 
         <SubContainer>
+          <Title>რეგისტრაცია</Title>
           <InputComponent
             label="სრული სახელი"
-            placeholder="შეიყვანეთ შეიყვანეთ სრული სახელი"
+            placeholder="შეიყვანეთ სრული სახელი"
             value={nickname}
             setValue={setNickname}
           />
@@ -110,6 +111,12 @@ const Container = styled.div`
       position: unset;
       margin-top: 40px
     `)}
+`;
+
+const Title = styled.p`
+  font-size: 35px;
+  color: #222222;
+  font-weight: 600;
 `;
 
 const SubContainer = styled.div`

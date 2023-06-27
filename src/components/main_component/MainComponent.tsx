@@ -5,20 +5,20 @@ import Vigets from "./Vigets";
 import Switcher from "./Switcher";
 import { DataInterface } from "../../types";
 import Description from "./Description";
-import {
-  DatabaseReference,
-  getDatabase,
-  ref,
-  set,
-  remove,
-  onValue,
-} from "firebase/database";
+import { getDatabase, ref, set, remove, onValue } from "firebase/database";
 
 import MapComponentn from "./Map";
 import { app } from "../../firebase/config";
+
 import { media } from "../../assets/css/GlobalCss";
 
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+
+
 function MainComponent({ data }: { data: DataInterface }) {
+  const uid = useSelector((state: RootState) => state.user.uid);
+
   if (!data) {
     return null;
   }
@@ -42,58 +42,89 @@ function MainComponent({ data }: { data: DataInterface }) {
 
   useEffect(() => {
     const db = getDatabase(app);
-    const starCountRef = ref(db, "users/" + "YOUR_USER_ID" + "/saved");
+    const starCountRef = ref(db, "users/" + uid + "/saved");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       const arr = Object.values(data);
 
       setFirebaseData(arr as DataInterface[]);
     });
-
   }, []);
 
-  useEffect(()=>{
-    
-    const arr = ['']
-
+  useEffect(() => {
+    const savedarr = [""];
+    const sendedarr = [""];
     firebaseData.map((item) => {
+      savedarr.push(item.id);
 
-      arr.push(item.id)
-       
-
-      if (arr.includes(id)) {
-
+      if (savedarr.includes(id)) {
         setIsSaved(true);
-      }
-      else{
+      } else {
         setIsSaved(false);
       }
     });
-  },[firebaseData, data, isSaved ])
-
-
-
+  }, [firebaseData, data, isSaved]);
 
   function writeJob({ userId, jobId }: { userId: string; jobId: string }) {
     const db = getDatabase(app);
     set(ref(db, "users/" + userId + "/saved" + `/${jobId}/`), data);
   }
 
-
-
-
-  const onDeleteJob = ({userId, jobId}: { userId: string; jobId: string }) => {
+  const onDeleteJob = ({
+    userId,
+    jobId,
+  }: {
+    userId: string;
+    jobId: string;
+  }) => {
     const db = getDatabase(app);
+    const skillRef = ref(db, "users/" + userId + "/saved" + `/${jobId}/`);
+
+    remove(skillRef)
+      .then(() => {})
+      .catch((error: any) => {});
+  };
+
+  const [cv, setCv] = useState<any>();
+
+  useEffect(() => {
+    const db = getDatabase(app);
+
     const skillRef = ref(db, "users/" + userId + "/saved" + `/${jobId}/`);
     
     remove(skillRef).then(() => {
     })
     .catch((error:any) => {
-    });
 
-  };
-  
-  
+    const starCountRef = ref(db, "users/" + uid);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      delete data.saved;
+
+      setCv(data);
+
+    });
+  }, []);
+
+  function sedCV({
+    userId,
+    jobName,
+    companyID,
+  }: {
+    userId: string;
+    jobName: string;
+    companyID: string;
+  }) {
+    const db = getDatabase(app);
+    set(ref(db, "CV/" + `${companyID}/` + `/${jobName}/${userId}`), cv);
+  }
+  const [isSended, setIsSend] = useState(false);
+
+  useEffect(()=>{
+
+    setIsSend(false)
+  },[data])
+
   return (
     <Container>
       <Content>
@@ -137,7 +168,24 @@ function MainComponent({ data }: { data: DataInterface }) {
           </>
         )}
 
-        <Apply>დაკავშირება</Apply>
+        <Apply
+          onClick={() => {
+            if(uid){
+            sedCV({
+              userId: uid as string,
+              jobName: name,
+              companyID: business.uid,
+            });
+            setIsSend(true);
+          }}}
+
+          isSended={isSended}
+        >
+          {
+            isSended?"წარმატებით გაიგზავნა": "რეზიუმეს გაგზავნა"
+          }
+
+        </Apply>
       </Content>
     </Container>
   );
@@ -163,10 +211,12 @@ const Content = styled.div`
   gap: 23px;
 `;
 
-const Apply = styled.button`
+const Apply = styled.button<{isSended:boolean}>`
   padding: 18px 256px;
   gap: 10px;
-  background: #222222;
+  transition: 0.3s;
+  cursor: pointer;
+  background: ${({isSended})=>isSended?"#656565":"#222222"};
   border-radius: 21px;
   color: #ffffff;
   margin: auto;
@@ -177,5 +227,3 @@ const Apply = styled.button`
 
   `)}
 `;
-
-
