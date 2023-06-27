@@ -39,9 +39,9 @@ The Job Finder Website is built using the following technologies and libraries:
 - Leaflet: A JavaScript library for interactive maps (if required for displaying job locations).
 - Styled Components: A CSS-in-JS library for styling React components.
 
-## Installation
+## Host
 
 - Clone the repository:
 
    ```shell
-   https://github.com/NikkaNamoradze/HireHub.git
+   https://hirehub-vacancy.netlify.app/
