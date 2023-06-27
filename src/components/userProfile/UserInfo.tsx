@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import editIcon from "../../assets/icons/editIcon.svg";
+
+import React from 'react';
+import styled from 'styled-components';
+import editIcon from '../../assets/icons/editIcon.svg';
+import { media } from '../../assets/css/GlobalCss';
 
 interface Info {
   username: string;
@@ -24,13 +26,20 @@ const UserInfo: React.FC<Info> = ({ username }) => {
 export default UserInfo;
 
 const Image = styled.div`
-  margin-left: 63px;
-  width: 124px;
-  height: 124px;
-  flex-shrink: 0;
-  border-radius: 40px;
-  border: 2px solid #fff;
-  background: #d9d9d9;
+
+margin-left: 63px;
+width: 124px;
+height: 124px;
+flex-shrink: 0;
+border-radius: 40px;
+border: 2px solid #FFF;
+background: #D9D9D9;
+
+${media.phone(`
+      width: 100px;
+      height: 100px;
+
+          `)}
 `;
 const Icon = styled.div`
   position: absolute;

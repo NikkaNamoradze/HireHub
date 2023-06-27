@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase/config";
 
-import { useDispatch } from "react-redux";
-import { login } from "../../store/userSlice";
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/userSlice';
+import { media } from "../../assets/css/GlobalCss";
 import Cookies from "js-cookie";
 
 function AuthRightLoginComponent() {
@@ -22,6 +23,7 @@ function AuthRightLoginComponent() {
 
     if (password.length < 8) {
       console.log("პაროლი უნდა იყოს 7 სიმბოლოზე დიდი.");
+
       return;
     }
 
@@ -35,7 +37,6 @@ function AuthRightLoginComponent() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
       });
   };
 
@@ -82,6 +83,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+
+  ${media.phone(`
+      position: unset;
+    `)}
 `;
 
 const Title = styled.p`
@@ -97,6 +102,10 @@ const SubContainer = styled.div`
   align-items: center;
   gap: 25px;
   width: 80%;
+
+  ${media.phone(`
+      margin-top: 50px;
+    `)}
 `;
 
 const Icon = styled.div`

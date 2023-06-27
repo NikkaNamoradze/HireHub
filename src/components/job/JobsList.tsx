@@ -59,14 +59,14 @@ export default JobsList;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 367px;
+  width: 100%;
   gap: 23px;
-  height: 100%;
+  /* height: 100%; */
 `;
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   overflow-y: scroll;
   height: 100%;

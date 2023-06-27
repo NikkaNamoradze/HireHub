@@ -47,7 +47,10 @@ export default Job;
 const Container = styled.div`
   display: flex;
   gap: 24px;
+  flex-direction: column;
   width: calc(100% - 64px);
   height: calc(100vh - 81.11px);
   margin: auto;
+
+
 `;

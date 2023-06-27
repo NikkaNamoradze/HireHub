@@ -8,6 +8,7 @@ import Dropdown from "../carousel/CarouselSearch/Dropdown";
 import CheckBoxList from "./CheckBoxList";
 import { category, employmentType, experience, workType } from "./filterContent";
 import { FilterInterface } from "../../types";
+import { media } from "../../assets/css/GlobalCss";
 
 
 
@@ -33,7 +34,7 @@ function Filter({setCatPayload,setWorkPayload,setEmpPayload, setExpPayload, setS
 
 
 const Container = styled.div<{show:boolean}>`
-  width: ${({show})=> show? "500px" : "0px"} ;
+  /* width: ${({show})=> show? "500px" : "0px"} ; */
   transition: 1s;
   height: 100%;
   border-radius: 24px;
@@ -43,6 +44,12 @@ const Container = styled.div<{show:boolean}>`
   gap: 50px;
   flex-direction: column;
   overflow-y: auto;
+
+  ${media.tablet(`
+    display:none
+  `)
+    
+  }
 `;
 
 

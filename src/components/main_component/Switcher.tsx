@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { media } from '../../assets/css/GlobalCss';
 
 
 function Switcher({swithch, setSwitch}:{swithch:boolean, setSwitch: React.Dispatch<React.SetStateAction<boolean>>}) {
@@ -45,5 +46,15 @@ const Button =  styled.button < {color:any} >`
       color:#f4f3f3;
 
     }
+    ${media.phone(`
+        padding: 16px 80px;
+        gap: 8px;
+
+    `)}
+     ${media.smallDevices(`
+        padding: 10px 40px;
+        gap: 8px;
+
+    `)}
 
     `;

@@ -3,6 +3,7 @@ import Info from "./Info";
 import saved from "../../assets/icons/Bookmark.svg";
 import MainInfo from "./MainInfo";
 import { format } from "../../utils/dateFormat";
+import { media } from "../../assets/css/GlobalCss";
 
 function Card({
   image,
@@ -33,7 +34,6 @@ function Card({
         />
         
       </Div>
-      <Info />
       <ReqText dangerouslySetInnerHTML={{ __html: reqtext }}></ReqText>
       <Time>{format(start_time) + " - " + format(end_time)}</Time>
     </MainConteiner>
@@ -69,10 +69,6 @@ const Time = styled.div`
   color: #a6a6a6;
 `;
 
-const SavedImg = styled.img`
-  display: flex;
-  height: 30px;
-`;
 
 const Div = styled.div`
   display: flex;
@@ -86,6 +82,14 @@ const MainConteiner = styled.div`
   padding: 23px;
   display: flex;
   gap: 15px;
+  width: 340px;
+  min-height: 300px;
   position: relative;
   flex-direction: column;
+
+  ${media.smallDevices(`
+          width: 270px;
+    `)}
+
+
 `;

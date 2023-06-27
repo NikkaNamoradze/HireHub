@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import filter from "../../assets/icons/filter.svg";
+import { media } from "../../assets/css/GlobalCss";
 
 function Filter({focused, setFocuse}:{ focused:boolean, setFocuse: React.Dispatch<React.SetStateAction<boolean>>}) {
   return (
@@ -41,6 +42,11 @@ const FilterButton = styled.button<{focused:boolean}>`
   margin-left: 18px;  
   background-color: ${({focused})=> focused?"#222222" : "#F4F3F3" };
   transition: 0.4s;
+
+  ${media.phone(`
+      display:none;
+    `)}
+
 `;
 
 

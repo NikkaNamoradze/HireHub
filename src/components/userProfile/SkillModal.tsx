@@ -60,10 +60,8 @@ function SkillModal() {
     
     remove(skillRef)
       .then(() => {
-        console.log(`Skill with ID ${id} deleted successfully.`);
       })
       .catch((error) => {
-        console.error(`Error deleting skill with ID ${id}:`, error);
       });
 
       if(skillData.length === 1){

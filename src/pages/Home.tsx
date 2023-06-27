@@ -25,8 +25,8 @@ function Home() {
 
   return (
     <MainConatiner>
-      <Carousel />
-      <JobCard title={"ახალი ვაკანსიები"} data={data as DataInterface[]}/>
+      <Carousel data={data?.slice(0, 4)} />
+      <JobCard title={"ახალი ვაკანსიები"} data={data.slice(3) as DataInterface[]}/>
 
     </MainConatiner>
   );
