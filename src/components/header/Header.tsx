@@ -7,10 +7,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <Conatainer>
-      <TitleConatiner>
-        <Title>Welcome Back, Let’s Find Your Job!</Title>
-        <FireImg src={fire} alt="" />
-      </TitleConatiner>
+
       <NavigationConatiner>
         <Navigation />
         <Link to={"/profile"}>
@@ -23,22 +20,7 @@ function Header() {
 
 export default Header;
 
-const Title = styled.h1`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 27px;
-  line-height: 33px;
-  color: #000000;
-`;
-const TitleConatiner = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-`;
-const FireImg = styled.img`
-  display: flex;
-  height: 30px;
-`;
+
 const Conatainer = styled.header`
   width: calc(100% - 48px);
   margin: auto;
